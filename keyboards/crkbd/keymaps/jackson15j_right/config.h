@@ -10,7 +10,7 @@
 /* #define TRACKPAD_CONNECTOR_VER 1 */
 
 /* Select hand configuration */
-#define MASTER_RIGHT
+// #define MASTER_RIGHT
 
 #define USE_SERIAL_PD2
 

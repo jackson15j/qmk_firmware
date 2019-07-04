@@ -1,9 +1,7 @@
 #pragma once
 
 /* Select hand configuration */
-
-#define MASTER_RIGHT
-// #define EE_HANDS
+// #define MASTER_RIGHT
 
 #define SSD1306OLED
 
