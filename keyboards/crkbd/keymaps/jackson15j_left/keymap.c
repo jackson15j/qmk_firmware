@@ -47,30 +47,29 @@ enum custom_keycodes {
 #define KC_LVAI  RGB_VAI
 #define KC_LVAD  RGB_VAD
 #define KC_LMOD  RGB_MOD
-
 #define KC_CTLA CTL_T(KC_A)
 #define KC_CTLSC CTL_T(KC_SCLN)
-#define KC_SFTZ SFT_T(KC_Z)
-#define KC_SFTSL SFT_T(KC_SLSH)
-#define KC_UNDSCR SFT_T(KC_MINS)  // `_`
+#define KC_SFTZ LSFT(KC_Z)
+#define KC_SFTSL LSFT(KC_SLSH)
+#define KC_UNDSCR LSFT(KC_MINS)  // `_`
 #define KC_PLUS LSFT(KC_EQL)  // `+`
-#define KC_JPIPE SFT_T(KC_BSLS)  // `|`
+#define KC_JPIPE LSFT(KC_NUBS)  // `|`
 #define KC_JHASH KC_NUHS  // `#`
-#define KC_TILDA SFT_T(KC_HASH)  // `~`
-#define KC_ATT SFT_T(KC_QUOT)  // `@`
-#define KC_QUEST SFT_T(KC_SLSH)  // `?`
-#define KC_LCURLY SFT_T(KC_LBRC)  // `{`
-#define KC_RCURLY SFT_T(KC_RBRC)  // `}`
-#define KC_EXCLM SFT_T(KC_1)  // `!`
-#define KC_DBLQT SFT_T(KC_2)  // `"`
-#define KC_GBP SFT_T(KC_3)  // `£`
-#define KC_DOLR SFT_T(KC_4)  // `$`
-#define KC_PRCNT SFT_T(KC_5)  // `%`
-#define KC_HAT SFT_T(KC_6)  // `^`
-#define KC_AMP SFT_T(KC_7)  // `&`
-#define KC_STAR SFT_T(KC_8)  // `*`
-#define KC_LPAREN SFT_T(KC_9)  // `(`
-#define KC_RPAREN SFT_T(KC_0)  // `)`
+#define KC_TILDA LSFT(KC_NUHS)  // `~`
+#define KC_ATT LSFT(KC_QUOT)  // `@`
+#define KC_QUEST LSFT(KC_SLSH)  // `?`
+#define KC_LCURLY LSFT(KC_LBRC)  // `{`
+#define KC_RCURLY LSFT(KC_RBRC)  // `}`
+#define KC_EXCLM LSFT(KC_1)  // `!`
+#define KC_DBLQT LSFT(KC_2)  // `"`
+#define KC_GBP LSFT(KC_3)  // `£`
+#define KC_DOLR LSFT(KC_4)  // `$`
+#define KC_PRCNT LSFT(KC_5)  // `%`
+#define KC_HAT LSFT(KC_6)  // `^`
+#define KC_AMP LSFT(KC_7)  // `&`
+#define KC_STAR LSFT(KC_8)  // `*`
+#define KC_LPAREN LSFT(KC_9)  // `(`
+#define KC_RPAREN LSFT(KC_0)  // `)`
 #define KC_WINX LWIN_T(KC_X)
 #define KC_WINDO RWIN_T(KC_DOT)
 
