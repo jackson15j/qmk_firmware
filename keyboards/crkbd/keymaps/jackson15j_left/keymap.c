@@ -19,14 +19,16 @@ enum layer_names {
   _QWERTY,
   _SYMBOL,
   _MOVMNT,
-  _NUMBER
+  _NUMBS,
+  _ADJUST
 };
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   SYMBOL,
-  NUMBER,
+  NUMBS,
   MOVMNT,
+  ADJUST,
   RGBRST,
   MBTN1,
   SCRL
@@ -35,7 +37,7 @@ enum custom_keycodes {
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
 #define KC_SYMBOL SYMBOL
-#define KC_NUMBER NUMBER
+#define KC_NUMBS NUMBS
 #define KC_MOVMNT MOVMNT
 #define KC_RST   RESET
 #define KC_LRST  RGBRST
@@ -85,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,     Z,  WINX,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTRL,  LALT,SYMBOL,      SPC, MOVMNT,NUMBER
+                                  LCTRL,  LALT,SYMBOL,      SPC,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   ),
 
@@ -95,21 +97,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
         TAB,LCURLY,  LBRC,LPAREN, MINUS, GRAVE,                  JHASH,UNDSCR,RPAREN,  RBRC,RCURLY,   ENT,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,   ATT,  PLUS,  BSLS, JPIPE,  QUOT,                  TILDA,  SLSH,   EQL, QUEST,  SLSH,  RSFT,
+       LSFT,   ATT,  PLUS,  NUBS, JPIPE,  QUOT,                  TILDA,  SLSH,   EQL, QUEST,  SLSH,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTRL,  LALT,SYMBOL,      SPC, MOVMNT,NUMBER
-                              //`--------------------'  `--------------------'
-  ),
-
-  [_NUMBER] = LAYOUT_kc(
-  //,-----------------------------------------.                ,-----------------------------------------.
-        ESC,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,  BSPC,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        TAB,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,   ENT,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,   DOT,   F12,  RSFT,
-  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTRL,  LALT,SYMBOL,      SPC, MOVMNT,NUMBER
+                                  LCTRL,  LALT,SYMBOL,      SPC,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   ),
 
@@ -119,11 +109,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
         TAB,  MPRV,  MPLY,  MNXT, XXXXX, XXXXX,                   HOME,  LEFT,  DOWN,  RGHT,   END,   ENT,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,  LGUI, XXXXX, XXXXX, XXXXX,   RST,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  RSFT,
+       LSFT,  LGUI,  LGUI, XXXXX, XXXXX,   RST,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTRL,  LALT,SYMBOL,      SPC, MOVMNT,NUMBER
+                                  LCTRL,  LALT,SYMBOL,      SPC,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   ),
+
+  [_NUMBS] = LAYOUT_kc(
+  //,-----------------------------------------.                ,-----------------------------------------.
+        ESC,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,  BSPC,
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+        TAB,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,   ENT,
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+       LSFT,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,   DOT,   F12,  RSFT,
+  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
+                                  LCTRL,  LALT,SYMBOL,      SPC,MOVMNT, NUMBS
+                              //`--------------------'  `--------------------'
+  ),
+
+  [_ADJUST] = LAYOUT_kc(
+  //,-----------------------------------------.                ,-----------------------------------------.
+        RST,  LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+       LTOG,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+       LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,
+  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
+                                  LCTRL,  LALT,SYMBOL,      SPC,MOVMNT, NUMBS
+                              //`--------------------'  `--------------------'
+  )
 };
 
 int RGB_current_mode;
@@ -133,7 +147,8 @@ void persistent_default_layer_set(uint16_t default_layer) {
   default_layer_set(default_layer);
 }
 
-// Setting NUMBER layer RGB back to default
+// Setting ADJUST layer RGB back to default.
+// Call adjust layer when RAISE and LOWER are both pressed.
 void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
   if (IS_LAYER_ON(layer1) && IS_LAYER_ON(layer2)) {
     layer_on(layer3);
@@ -204,19 +219,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case SYMBOL:
       if (record->event.pressed) {
         layer_on(_SYMBOL);
-        update_tri_layer_RGB(_SYMBOL, _MOVMNT, _NUMBER);
+        update_tri_layer_RGB(_SYMBOL, _MOVMNT, _ADJUST);
       } else {
         layer_off(_SYMBOL);
-        update_tri_layer_RGB(_SYMBOL, _MOVMNT, _NUMBER);
+        update_tri_layer_RGB(_SYMBOL, _MOVMNT, _ADJUST);
       }
       return false;
     case MOVMNT:
       if (record->event.pressed) {
         layer_on(_MOVMNT);
-        update_tri_layer_RGB(_SYMBOL, _MOVMNT, _NUMBER);
+        update_tri_layer_RGB(_SYMBOL, _MOVMNT, _ADJUST);
       } else {
         layer_off(_MOVMNT);
-        update_tri_layer_RGB(_SYMBOL, _MOVMNT, _NUMBER);
+        update_tri_layer_RGB(_SYMBOL, _MOVMNT, _ADJUST);
+      }
+      return false;
+    case NUMBS:
+      if (record->event.pressed) {
+        layer_on(_NUMBS);
+      } else {
+        layer_off(_NUMBS);
       }
       return false;
     case RGB_MOD:
