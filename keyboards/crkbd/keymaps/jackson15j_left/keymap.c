@@ -73,6 +73,7 @@ enum custom_keycodes {
 #define KC_LPAREN LSFT(KC_9)  // `(`
 #define KC_RPAREN LSFT(KC_0)  // `)`
 #define KC_WINX LWIN_T(KC_X)
+#define KC_WINF2 LWIN_T(KC_F2)
 #define KC_WINDO RWIN_T(KC_DOT)
 
 #define KC_MBTN1  MBTN1
@@ -93,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_SYMBOL] = LAYOUT_kc(
   //,-----------------------------------------.                ,-----------------------------------------.
-        ESC, EXCLM, DBLQT,   GBP,  DOLR, PRCNT,                    HAT,   AMP,  STAR,LPAREN,RPAREN,  BSPC,
+        ESC, EXCLM, DBLQT,   GBP,  DOLR, PRCNT,                    HAT,   AMP,  STAR,LPAREN,RPAREN,   DEL,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
         TAB,LCURLY,  LBRC,LPAREN, MINUS, GRAVE,                  JHASH,UNDSCR,RPAREN,  RBRC,RCURLY,   ENT,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -121,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
         TAB,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,   ENT,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,   DOT,   F12,  RSFT,
+       LSFT,    F1, WINF2,    F3,    F4,    F5,                     F6,    F7,    F8,   DOT,   F12,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   LCTRL,  LALT,SYMBOL,      SPC,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
