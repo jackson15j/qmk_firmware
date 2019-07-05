@@ -3,12 +3,14 @@
 /* Select hand configuration */
 // #define MASTER_RIGHT
 
+#define USB_MAX_POWER_CONSUMPTION 100
+
 #define SSD1306OLED
 
 #define USE_SERIAL_PD2
 
 #define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 100
+#define TAPPING_TERM 200
 
 #undef RGBLED_NUM
 #define RGBLIGHT_ANIMATIONS
