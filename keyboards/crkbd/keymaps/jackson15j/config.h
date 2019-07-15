@@ -1,7 +1,7 @@
 #pragma once
 
 /* Select hand configuration */
-// #define MASTER_RIGHT
+#define MASTER_RIGHT
 
 #define USB_MAX_POWER_CONSUMPTION 100
 

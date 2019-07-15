@@ -106,11 +106,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_MOVMNT] = LAYOUT_kc(
   //,-----------------------------------------.                ,-----------------------------------------.
-        ESC,  VOLD,  VOLU,  MUTE, XXXXX, XXXXX,                  XXXXX,  PGUP,    UP,  PGDN,   DEL,  BSPC,
+        ESC, XXXXX,  WH_U,  MS_U,  WH_D, XXXXX,                  XXXXX,  PGUP,    UP,  PGDN,   DEL,  BSPC,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        TAB,  MPRV,  MPLY,  MNXT, XXXXX, XXXXX,                   HOME,  LEFT,  DOWN,  RGHT,   END,   ENT,
+        TAB,  BTN1,  MS_L,  MS_D,  MS_R,  BTN2,                   HOME,  LEFT,  DOWN,  RGHT,   END,   ENT,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,  LGUI,  LGUI, XXXXX, XXXXX,   RST,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  RSFT,
+       LSFT,  LGUI,  LGUI, XXXXX, XXXXX,   RST,                   MUTE, VOLD,   VOLU, XXXXX, XXXXX,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   LCTRL,  LALT,SYMBOL,      SPC,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
@@ -134,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LTOG,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,
+       LMOD,  LHUD,  LSAD,  LVAD, XXXXX,   RST,                    RST, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   LCTRL,  LALT,SYMBOL,      SPC,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
