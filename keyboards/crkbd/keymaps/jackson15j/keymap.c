@@ -39,6 +39,8 @@ enum custom_keycodes {
 #define KC_SYMBOL SYMBOL
 #define KC_NUMBS NUMBS
 #define KC_MOVMNT MOVMNT
+#define KC_SPC_SYM LT(_SYMBOL, KC_SPC)  // Tap=space, hold=SYMBOL layer.
+#define KC_SPC_LSFT MT(MOD_LSFT, KC_SPC)  // Tap=space, hold=Left Shift.
 #define KC_RST   RESET
 #define KC_LRST  RGBRST
 #define KC_LTOG  RGB_TOG
@@ -88,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,     Z,  WINX,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTRL,  LALT,SYMBOL,      SPC,MOVMNT, NUMBS
+                                  LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   ),
 
@@ -100,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,   ATT,  PLUS,  NUBS, JPIPE,  QUOT,                  TILDA,  SLSH,   EQL, QUEST,  SLSH,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTRL,  LALT,SYMBOL,      SPC,MOVMNT, NUMBS
+                                  LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   ),
 
@@ -112,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,  LGUI,  LGUI, XXXXX, XXXXX,   RST,                   MUTE, VOLD,   VOLU, XXXXX, XXXXX,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTRL,  LALT,SYMBOL,      SPC,MOVMNT, NUMBS
+                                  LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   ),
 
@@ -124,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,    F1, WINF2,    F3,    F4,    F5,                     F6,    F7,    F8,   DOT,   F12,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTRL,  LALT,SYMBOL,      SPC,MOVMNT, NUMBS
+                                  LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   ),
 
@@ -136,7 +138,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LMOD,  LHUD,  LSAD,  LVAD, XXXXX,   RST,                    RST, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTRL,  LALT,SYMBOL,      SPC,MOVMNT, NUMBS
+                                  LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   )
 };
@@ -213,7 +215,7 @@ void iota_gfx_task_user(void) {
         matrix_update(&display, &matrix);
     } else {
         render_crkbd_logo();
-        oled_scroll_left();  // Turns on scrolling
+        // oled_scroll_left();  // Turns on scrolling
     }
 }
 #endif//SSD1306OLED
