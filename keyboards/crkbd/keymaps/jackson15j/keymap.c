@@ -112,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
         TAB,  BTN1,  MS_L,  MS_D,  MS_R,  BTN2,                   HOME,  LEFT,  DOWN,  RGHT,   END,   ENT,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,  LGUI,  LGUI, XXXXX, XXXXX,   RST,                   MUTE, VOLD,   VOLU, XXXXX, XXXXX,  RSFT,
+       LSFT,  LGUI,  LGUI, XXXXX, XXXXX,   RST,                   MUTE, VOLD,   VOLU,   INS,  PSCR,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
