@@ -318,6 +318,16 @@ void keyboard_post_init_user(void) {
 }
 #endif
 
+uint16_t get_tapping_term(uint16_t keycode) {
+  switch (keycode) {
+    case KC_SPC_LSFT:
+      // Reduce tapping term of Space/Shift to avoid shifting when I'm typing fast.
+      return 150;
+    default:
+      return TAPPING_TERM;
+  }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTY:
