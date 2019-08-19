@@ -1,70 +1,58 @@
 #include QMK_KEYBOARD_H
 #include "jackson15j.h"
 
+#ifdef PROTOCOL_LUFA
+  #include "lufa.h"
+  #include "split_util.h"
+#endif
+
 extern keymap_config_t keymap_config;
 extern uint8_t is_master;
 
-
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_QWERTY] = LAYOUT_kc(
-  //,-----------------------------------------.                ,-----------------------------------------.
-        ESC,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        TAB,     A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN,   ENT,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,     Z,  WINX,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSFT,
-  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
-                              //`--------------------'  `--------------------'
-  ),
-
-  [_SYMBOL] = LAYOUT_kc(
-  //,-----------------------------------------.                ,-----------------------------------------.
-        ESC, EXCLM, DBLQT,   GBP,  DOLR, PRCNT,                    HAT,   AMP,  STAR,LPAREN,RPAREN,   DEL,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        TAB,LCURLY,  LBRC,LPAREN, MINUS, GRAVE,                  JHASH,UNDSCR,RPAREN,  RBRC,RCURLY,   ENT,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,   ATT,  PLUS,  NUBS, JPIPE,  QUOT,                  TILDA,  SLSH,   EQL, QUEST,  SLSH,  RSFT,
-  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
-                              //`--------------------'  `--------------------'
-  ),
-
-  [_MOVMNT] = LAYOUT_kc(
-  //,-----------------------------------------.                ,-----------------------------------------.
-        ESC, XXXXX,  WH_U,  MS_U,  WH_D, XXXXX,                  XXXXX,  PGUP,    UP,  PGDN,   DEL,  BSPC,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        TAB,  BTN1,  MS_L,  MS_D,  MS_R,  BTN2,                   HOME,  LEFT,  DOWN,  RGHT,   END,   ENT,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,  LGUI,  LGUI, XXXXX, XXXXX,   RST,                   MUTE, VOLD,   VOLU,   INS,  PSCR,  RSFT,
-  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
-                              //`--------------------'  `--------------------'
-  ),
-
-  [_NUMBS] = LAYOUT_kc(
-  //,-----------------------------------------.                ,-----------------------------------------.
-        ESC, EXCLM, DBLQT,   GBP,  DOLR, PRCNT,                    HAT,   AMP,  STAR,LPAREN,RPAREN,  BSPC,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        TAB,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,   ENT,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,    F1, WINF2,    F3,    F4,    F5,                     F6,    F7,    F8,   DOT,   F12,  RSFT,
-  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
-                              //`--------------------'  `--------------------'
-  ),
-
-  [_ADJUST] = LAYOUT_kc(
-  //,-----------------------------------------.                ,-----------------------------------------.
-        RST,  LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LTOG,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LMOD,  LHUD,  LSAD,  LVAD, XXXXX,   RST,                    RST, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,
-  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
-                              //`--------------------'  `--------------------'
+#define LAYOUT_crkbd_base( \
+    K01, K02, K03, K04, K05, K06, K07, K08, K09, K0A, K0B, K0C, \
+    K11, K12, K13, K14, K15, K16, K17, K18, K19, K1A, K1B, K1C, \
+    K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A, K2B, K2C, \
+                   K31, K32, K33, K34, K35, K36 \
   )
+
+#define LAYOUT_crkbd_wrapper(...) LAYOUT(__VA_ARGS__)
+// See: `/users/jackson15j/jackson15j.h` for the layouts.
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  [_QWERTY] = LAYOUT_crkbd_wrapper(
+    QWERTY_1_12,
+    QWERTY_2_12,
+    QWERTY_3_12,
+    CORNE_THUMBS
+  ),
+
+  [_SYMBOL] = LAYOUT_crkbd_wrapper(
+    SYMBOL_1_12,
+    SYMBOL_2_12,
+    SYMBOL_3_12,
+    CORNE_THUMBS
+  ),
+
+  [_MOVMNT] = LAYOUT_crkbd_wrapper(
+    MOVMNT_1_12,
+    MOVMNT_2_12,
+    MOVMNT_3_12,
+    CORNE_THUMBS
+  ),
+
+  [_NUMBS] = LAYOUT_crkbd_wrapper(
+    NUMBS_1_12,
+    NUMBS_2_12,
+    NUMBS_3_12,
+    CORNE_THUMBS
+  ),
+
+  [_ADJUST] = LAYOUT_crkbd_wrapper(
+    ADJUST_1_12,
+    ADJUST_2_12,
+    ADJUST_3_12,
+    CORNE_THUMBS
+  ),
 };
 
 
