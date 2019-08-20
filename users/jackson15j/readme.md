@@ -4,6 +4,23 @@ Overview
 Personal user space for my keyboards:
 
 * [crkbd].
+* [planck].
+
+Aim
+---
+
+Custom layout that is based on my custom programming layout from my Vortex
+Core ([Github: jackson15j/vortex_core]). Aim of my layout:
+
+* Place programming symbols (Python/C++) under/around index fingers, instead of
+  pinky.
+* Symmetric layout between hands (as much as possible).
+* Use emacs, so need `Ctrl`/`Alt` on the left-side.
+* I'm a right-hand `Space` fan, but added to left-side as well for single half
+  gaming.
+* Keep shifted-number symbols in the same place (fallback stock-Qwerty muscle
+  memory).
+* Use `EE_HANDS` (On split boards) so that either half can be plugged in.
 
 Layout
 ------
@@ -87,6 +104,11 @@ Good User spaces and keymaps:
 * [/users/jarred/].
 * [/users/drashna/].
 
+### Gotcha's
+
+Couldn't get this to flash on my Dell XPS (would flash slowly and always
+timeout). Think it was due to the inbuilt USB3/thunderbolt hub.
+
 
 [QMK Docs]: https://docs.qmk.fm/
 [QMK Docs: feature/userspace]: https://docs.qmk.fm/#/feature_userspace
@@ -95,5 +117,6 @@ Good User spaces and keymaps:
 [Github: jackson15j/vortex_core]: https://github.com/jackson15j/vortex_core
 
 [crkbd]: ../../keyboards/crkbd/keymaps/jackson15j/
+[planck]: ../../keyboards/planck/keymaps/jackson15j/
 [/users/jarred/]: ../jarred/
 [/users/drashna/]: ../drashna/
