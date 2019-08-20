@@ -73,6 +73,10 @@ enum userspace_custom_keycodes {
 #define CORNE_THUMB_R KC_SPC, KC_MOVMNT, KC_NUMBS
 #define CORNE_THUMBS CORNE_THUMB_L, CORNE_THUMB_R
 
+// 1x12 Thumb Cluster.
+// TODO: Rotary Encoder.
+#define PLANCK_THUMBS KC_XXXXX KC_LCTRL KC_LGUI CORNE_THUMBS KC_LEFT KC_DOWN KC_RIGHT
+
 // 3x12 Qwerty layout.
 #define QWERTY_L1 KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
 #define QWERTY_L2 KC_A,    KC_S,    KC_D,    KC_F,    KC_G
@@ -80,6 +84,7 @@ enum userspace_custom_keycodes {
 #define QWERTY_R1 KC_Y,    KC_U,    KC_I,    KC_O,    KC_P
 #define QWERTY_R2 KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN
 #define QWERTY_R3 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLASH
+#define QWERTY_R3_PLANCK KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_UP
   // [_QWERTY] = LAYOUT_kc(
   //,-----------------------------------------.                ,-----------------------------------------.
   //|   ESC,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,
@@ -94,6 +99,7 @@ enum userspace_custom_keycodes {
 #define QWERTY_1_12 KC_ESC, QWERTY_L1, QWERTY_R1, KC_BSPC
 #define QWERTY_2_12 KC_TAB, QWERTY_L2, QWERTY_R2, KC_ENT
 #define QWERTY_3_12 KC_LSFT, QWERTY_L3, QWERTY_R3, KC_RSFT
+#define QWERTY_3_12_PLANCK KC_LSFT, QWERTY_L3, QWERTY_R3_PLANCK, KC_RSFT
 
 // 3x12 Symbols layout.
 #define SYMBOL_L1 KC_EXCLM, KC_DBLQT,   KC_GBP,  KC_DOLR, KC_PRCNT
