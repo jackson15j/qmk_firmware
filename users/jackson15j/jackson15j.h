@@ -1,5 +1,4 @@
 #pragma once
-#include "quantum.h"
 
 enum userspace_layers {
     _QWERTY,
@@ -75,7 +74,7 @@ enum userspace_custom_keycodes {
 
 // 1x12 Thumb Cluster.
 // TODO: Rotary Encoder.
-#define PLANCK_THUMBS KC_XXXXX KC_LCTRL KC_LGUI CORNE_THUMBS KC_LEFT KC_DOWN KC_RIGHT
+#define PLANCK_THUMBS KC_XXXXX, KC_LCTRL, KC_LGUI, CORNE_THUMBS, KC_LEFT, KC_DOWN, KC_RIGHT
 
 // 3x12 Qwerty layout.
 #define QWERTY_L1 KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
