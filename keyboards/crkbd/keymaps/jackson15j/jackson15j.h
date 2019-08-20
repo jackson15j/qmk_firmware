@@ -69,7 +69,8 @@ enum userspace_custom_keycodes {
 
 // 1x6 Thumb cluster.
 #define CORNE_THUMB_L KC_LCTRL, KC_LALT, KC_SPC_SYM
-#define CORNE_THUMB_R KC_SPC_LSFT, KC_MOVMNT, KC_NUMBS
+// #define CORNE_THUMB_R KC_SPC_LSFT, KC_MOVMNT, KC_NUMBS
+#define CORNE_THUMB_R KC_SPC, KC_MOVMNT, KC_NUMBS
 #define CORNE_THUMBS CORNE_THUMB_L, CORNE_THUMB_R
 
 // 3x12 Qwerty layout.
@@ -112,7 +113,7 @@ enum userspace_custom_keycodes {
                               //| LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // ),
-#define SYMBOL_1_12 KC_ESC, SYMBOL_L1, SYMBOL_R1, KC_BSPC
+#define SYMBOL_1_12 KC_ESC, SYMBOL_L1, SYMBOL_R1, KC_DEL
 #define SYMBOL_2_12 KC_TAB, SYMBOL_L2, SYMBOL_R2, KC_ENT
 #define SYMBOL_3_12 KC_LSFT, SYMBOL_L3, SYMBOL_R3, KC_RSFT
 
@@ -147,7 +148,7 @@ enum userspace_custom_keycodes {
 #define NUMBS_R3 KC_F6,    KC_F7,    KC_F8,    KC_DOT,    KC_F12
   // [_NUMBS] = LAYOUT_kc(
   //,-----------------------------------------.                ,-----------------------------------------.
-  //|   ESC,     !,     ",     £,     $,     %,                      ^,     &,     *,     (,     ),   DEL,
+  //|   ESC,     !,     ",     £,     $,     %,                      ^,     &,     *,     (,     ),  BSPC,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
   //|   TAB,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,   ENT,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
