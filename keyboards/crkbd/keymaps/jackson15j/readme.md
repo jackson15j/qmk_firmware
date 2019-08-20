@@ -1,18 +1,7 @@
 Jackson15j Crkbd/Corne
 ======================
 
-Custom layout that is based on my custome programming layout from my Vortex
-Core ([Github: jackson15j/vortex_core]). Aim of my layout:
-
-* Place programming symbols (Python/C++) under/around index fingers, instead of
-  pinky.
-* Symmetric layout between hands (as much as possible).
-* Use emacs, so need `Ctrl`/`Alt` on the left-side.
-* I'm a right-hand `Space` fan, but added to left-side as well for single half
-  gaming.
-* Keep shifted-number symbols in the same place (fallback stock-Qwerty muscle
-  memory).
-* Use `EE_HANDS` so that either half can be plugged in.
+See: [/users/jackson15j/], for layout and generic code.
 
 Build
 -----
@@ -33,11 +22,6 @@ the boot loader. Should flash in a few seconds.
 Couldn't get this to flash on my Dell XPS (would flash slowly and always
 timeout). Think it was due to the inbuilt USB3/thunderbolt hub.
 
-Layout
-------
-
-Layout is now held in: [/users/jackson15j/].
-
 Links
 -----
 
@@ -48,19 +32,6 @@ Build logs:
 * [Vlukash: Corne/Crkbd build log].
 * [Github: foostan/crkbd corne-classic build guide].
 
-QMK firmware:
-
-* [QMK Docs].
-* [QMK Docs: split-keyboard-options].
-* [ThomasBaart: qmk-basics].
-* [Github: qmk/qmk_driver_installer].
-
-
-[QMK Docs]: https://docs.qmk.fm/
-[QMK Docs: split-keyboard-options]: https://docs.qmk.fm/reference/config_options#split-keyboard-options
-[ThomasBaart: qmk-basics]: https://thomasbaart.nl/category/mechanical-keyboards/firmware/qmk/qmk-basics/
-[Github: qmk/qmk_driver_installer]: https://github.com/qmk/qmk_driver_installer
-[Github: jackson15j/vortex_core]: https://github.com/jackson15j/vortex_core
 
 [The Frey: helidox-build-log]: http://the-frey.github.io/2019/02/15/helidox-build-log
 [ThomasBaart: corne/helidox build log]: https://thomasbaart.nl/2018/11/26/corne-keyboard-helidox-build-log/
