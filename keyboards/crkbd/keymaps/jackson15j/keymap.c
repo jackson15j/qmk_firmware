@@ -248,6 +248,10 @@ uint16_t get_tapping_term(uint16_t keycode) {
   }
 }
 
+layer_state_t layer_state_set_user(layer_state_t state) {
+  return update_tri_layer_state(state, _SYMBOL, _MOVMNT, _ADJUST);
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTY:
@@ -258,19 +262,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case SYMBOL:
       if (record->event.pressed) {
         layer_on(_SYMBOL);
-        update_tri_layer(_SYMBOL, _MOVMNT, _ADJUST);
       } else {
         layer_off(_SYMBOL);
-        update_tri_layer(_SYMBOL, _MOVMNT, _ADJUST);
       }
       return false;
     case MOVMNT:
       if (record->event.pressed) {
         layer_on(_MOVMNT);
-        update_tri_layer(_SYMBOL, _MOVMNT, _ADJUST);
       } else {
         layer_off(_MOVMNT);
-        update_tri_layer(_SYMBOL, _MOVMNT, _ADJUST);
       }
       return false;
     case NUMBS:
