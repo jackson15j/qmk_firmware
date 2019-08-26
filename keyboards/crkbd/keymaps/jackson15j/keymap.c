@@ -228,11 +228,6 @@ void oled_task_user(void) {
 void matrix_scan_keymap(void) { update_log(); }
 #endif
 
-void persistent_default_layer_set(uint16_t default_layer) {
-  eeconfig_update_default_layer(default_layer);
-  default_layer_set(default_layer);
-}
-
 #ifdef CONSOLE_ENABLE
 void keyboard_post_init_user(void) {
   // Customise these values to desired behaviour
@@ -257,7 +252,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
-        persistent_default_layer_set(1UL<<_QWERTY);
+        set_single_persistent_default_layer(_QWERTY);
       }
       return false;
     case SYMBOL:
