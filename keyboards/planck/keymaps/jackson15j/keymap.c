@@ -119,37 +119,43 @@ uint16_t muse_counter = 0;
 uint8_t muse_offset = 70;
 uint16_t muse_tempo = 50;
 
-void encoder_update(bool clockwise) {
-  if (muse_mode) {
-    if (IS_LAYER_ON(_MOVMNT)) {
-      if (clockwise) {
-        muse_offset++;
-      } else {
-        muse_offset--;
-      }
+void encoder_update_user(uint8_t index, bool clockwise) {
+  if (IS_LAYER_ON(_MOVMNT)) {
+    if (clockwise) {
+      register_code (KC_PGUP);
+      unregister_code (KC_PGUP);
     } else {
-      if (clockwise) {
-        muse_tempo+=1;
-      } else {
-        muse_tempo-=1;
-      }
+      register_code (KC_PGDN);
+      unregister_code (KC_PGDN);
+    }
+  }
+  if (IS_LAYER_ON(_SYMBOL)) {
+    if (clockwise) {
+      register_code (KC_MS_WH_UP);
+      unregister_code (KC_MS_WH_UP);
+    } else {
+      register_code (KC_MS_WH_DOWN);
+      unregister_code (KC_MS_WH_DOWN);
     }
   } else {
     if (clockwise) {
-      #ifdef MOUSEKEY_ENABLE
-        tap_code(KC_MS_WH_DOWN);
-      #else
-        tap_code(KC_PGDN);
-      #endif
+      tap_code(KC_VOLU);
     } else {
-      #ifdef MOUSEKEY_ENABLE
-        tap_code(KC_MS_WH_UP);
-      #else
-        tap_code(KC_PGUP);
-      #endif
+      tap_code(KC_VOLD);
     }
   }
 }
+
+// FIXME: Can't get my slimmed down or above code working on the Encoder ??
+// void encoder_update(bool clockwise) {
+//     if (IS_LAYER_ON(_MOVMNT)) {
+//         clockwise ? tap_code(KC_MS_WH_DOWN) : tap_code(KC_MS_WH_UP);
+//     } else if (IS_LAYER_ON(_QWERTY)) {
+//         clockwise ? tap_code(KC_VOLU) : tap_code(KC_VOLD);
+//     } else {
+//         clockwise ? tap_code(KC_A) : tap_code(KC_B);
+//     }
+// }
 
 void dip_update(uint8_t index, bool active) {
   switch (index) {
