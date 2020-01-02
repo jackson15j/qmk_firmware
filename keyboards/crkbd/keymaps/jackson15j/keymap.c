@@ -57,175 +57,159 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 #ifdef OLED_DRIVER_ENABLE
+
+#    define KEYLOGGER_LENGTH 5
+static uint32_t oled_timer                       = 0;
+static char     keylog_str[KEYLOGGER_LENGTH + 1] = {"\n"};
+static uint16_t log_timer                        = 0;
+// clang-format off
+static const char PROGMEM code_to_name[0xFF] = {
+//   0    1    2    3    4    5    6    7    8    9    A    B    c    D    E    F
+    ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',  // 0x
+    'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2',  // 1x
+    '3', '4', '5', '6', '7', '8', '9', '0',  20,  19,  27,  26,  22, '-', '=', '[',  // 2x
+    ']','\\', '#', ';','\'', '`', ',', '.', '/', 128, ' ', ' ', ' ', ' ', ' ', ' ',  // 3x
+    ' ', ' ', ' ', ' ', ' ', ' ', 'P', 'S', ' ', ' ', ' ', ' ',  16, ' ', ' ', ' ',  // 4x
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // 5x
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // 6x
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // 7x
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // 8x
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // 9x
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // Ax
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // Bx
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // Cx
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // Dx
+    'C', 'S', 'A', 'C', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // Ex
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '        // Fx
+};
+
+void add_keylog(uint16_t keycode);
+
 oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_270; }
-uint16_t        oled_timer;
-
-char     keylog_str[5]   = {};
-uint8_t  keylogs_str_idx = 0;
-uint16_t log_timer       = 0;
-
-const char code_to_name[60] = {' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\', '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
 
 void add_keylog(uint16_t keycode) {
-    if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) || (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX)) {
+    if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) || (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX) || (keycode >= QK_MODS && keycode <= QK_MODS_MAX)) {
         keycode = keycode & 0xFF;
+    } else if (keycode > 0xFF) {
+        keycode = 0;
     }
 
-    for (uint8_t i = 4; i > 0; i--) {
+    for (uint8_t i = (KEYLOGGER_LENGTH - 1); i > 0; --i) {
         keylog_str[i] = keylog_str[i - 1];
     }
-    if (keycode < 60) {
-        keylog_str[0] = code_to_name[keycode];
+
+    if (keycode < (sizeof(code_to_name) / sizeof(char))) {
+        keylog_str[0] = pgm_read_byte(&code_to_name[keycode]);
     }
-    keylog_str[5] = 0;
 
     log_timer = timer_read();
 }
 
 void update_log(void) {
     if (timer_elapsed(log_timer) > 750) {
-        add_keylog(0);
+        // add_keylog(0);
     }
 }
 
-bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
-        add_keylog(keycode);
-        oled_timer = timer_read();
-    }
-    return true;
+void render_keylogger_status(void) {
+    oled_write_P(PSTR("KLogr"), false);
+    oled_write(keylog_str, false);
 }
+
+void render_default_layer_state(void) {
+    oled_write_P(PSTR("Lyout"), false);
+    switch (get_highest_layer(default_layer_state)) {
+        case _QWERTY:
+            oled_write_P(PSTR(" QRTY"), false);
+            break;
+    }
+}
+
+void render_layer_state(void) {
+    oled_write_P(PSTR("LAYER"), false);
+    oled_write_P(PSTR("Symbl"), layer_state_is(_SYMBOL));
+    oled_write_P(PSTR("Move "), layer_state_is(_MOVMNT));
+    oled_write_P(PSTR("Nums "), layer_state_is(_NUMBS));
+    oled_write_P(PSTR("Adj  "), layer_state_is(_ADJUST));
+}
+
+void render_keylock_status(uint8_t led_usb_state) {
+    oled_write_P(PSTR("Lock:"), false);
+    oled_write_P(PSTR(" "), false);
+    oled_write_P(PSTR("N"), led_usb_state & (1 << USB_LED_NUM_LOCK));
+    oled_write_P(PSTR("C"), led_usb_state & (1 << USB_LED_CAPS_LOCK));
+    oled_write_ln_P(PSTR("S"), led_usb_state & (1 << USB_LED_SCROLL_LOCK));
+}
+
+void render_mod_status(uint8_t modifiers) {
+    oled_write_P(PSTR("Mods:"), false);
+    oled_write_P(PSTR(" "), false);
+    oled_write_P(PSTR("S"), (modifiers & MOD_MASK_SHIFT));
+    oled_write_P(PSTR("C"), (modifiers & MOD_MASK_CTRL));
+    oled_write_P(PSTR("A"), (modifiers & MOD_MASK_ALT));
+    oled_write_P(PSTR("G"), (modifiers & MOD_MASK_GUI));
+}
+
+void render_bootmagic_status(void) {
+    /* Show Ctrl-Gui Swap options */
+    static const char PROGMEM logo[][2][3] = {
+        {{0x97, 0x98, 0}, {0xb7, 0xb8, 0}},
+        {{0x95, 0x96, 0}, {0xb5, 0xb6, 0}},
+    };
+    oled_write_P(PSTR("BTMGK"), false);
+    oled_write_P(PSTR(" "), false);
+    oled_write_P(logo[0][0], !keymap_config.swap_lctl_lgui);
+    oled_write_P(logo[1][0], keymap_config.swap_lctl_lgui);
+    oled_write_P(PSTR(" "), false);
+    oled_write_P(logo[0][1], !keymap_config.swap_lctl_lgui);
+    oled_write_P(logo[1][1], keymap_config.swap_lctl_lgui);
+    oled_write_P(PSTR(" NKRO"), keymap_config.nkro);
+}
+
+// void render_user_status(void) {
+//     oled_write_P(PSTR("USER:"), false);
+//     oled_write_P(PSTR(" Anim"), userspace_config.rgb_matrix_idle_anim);
+//     oled_write_P(PSTR(" Layr"), userspace_config.rgb_layer_change);
+//     oled_write_P(PSTR(" Nuke"), userspace_config.nuke_switch);
+// }
 
 void render_status_main(void) {
     /* Show Keyboard Layout  */
-    oled_write("Lyout", false);
-    switch (biton32(default_layer_state)) {
-        case _QWERTY:
-            oled_write(" QRTY", false);
-            break;
-        // case _COLEMAK:
-        //     oled_write(" COLE", false);
-        //     break;
-        // case _DVORAK:
-        //     oled_write(" DVRK", false);
-        //     break;
-        // case _WORKMAN:
-        //     oled_write(" WKMN", false);
-        //     break;
-        // case _NORMAN:
-        //     oled_write(" NORM", false);
-        //     break;
-        // case _MALTRON:
-        //     oled_write(" MLTN", false);
-        //     break;
-        // case _EUCALYN:
-        //     oled_write(" ECLN", false);
-        //     break;
-        // case _CARPLAX:
-        //     oled_write(" CRPX", false);
-        //     break;
-    }
+    render_default_layer_state();
+    render_keylock_status(host_keyboard_leds());
+    render_bootmagic_status();
+    // render_user_status();
 
-    /* Show Lock Status (only work on master side) */
-    uint8_t led_usb_state = host_keyboard_leds();
-    oled_write("Lock:", false);
-    oled_write(" ", false);
-    oled_write_ln("NUM", led_usb_state & (1 << USB_LED_NUM_LOCK));
-    oled_write(" ", false);
-    oled_write("CAPS", led_usb_state & (1 << USB_LED_CAPS_LOCK));
-    oled_write(" ", false);
-    oled_write("SCRL", led_usb_state & (1 << USB_LED_SCROLL_LOCK));
-
-    /* Show Alt-Gui Swap options */
-    oled_write("BTMGK", false);
-    oled_write(" ", false);
-    oled_write_ln("Win", !keymap_config.swap_lalt_lgui);
-    oled_write(" ", false);
-    oled_write_ln("Mac", keymap_config.swap_lalt_lgui);
-
-    oled_write(keylog_str, false);
+    render_keylogger_status();
 }
 
 void render_status_secondary(void) {
     /* Show Keyboard Layout  */
-    oled_write("Lyout", false);
-    switch (biton32(default_layer_state)) {
-        case _QWERTY:
-            oled_write(" QRTY", false);
-            break;
-        // case _COLEMAK:
-        //     oled_write(" COLE", false);
-        //     break;
-        // case _DVORAK:
-        //     oled_write(" DVRK", false);
-        //     break;
-        // case _WORKMAN:
-        //     oled_write(" WKMN", false);
-        //     break;
-        // case _NORMAN:
-        //     oled_write(" NORM", false);
-        //     break;
-        // case _MALTRON:
-        //     oled_write(" MLTN", false);
-        //     break;
-        // case _EUCALYN:
-        //     oled_write(" ECLN", false);
-        //     break;
-        // case _CARPLAX:
-        //     oled_write(" CRPX", false);
-        //     break;
-    }
+    render_default_layer_state();
+    render_layer_state();
+    render_mod_status(get_mods() | get_oneshot_mods());
 
-    /* Show Activate layer */
-    oled_write("Layer", false);
-    switch (biton32(layer_state)) {
-        case _SYMBOL:
-            oled_write("Symbl", false);
-            break;
-        case _MOVMNT:
-            oled_write("Move ", false);
-            break;
-        case _NUMBS:
-            oled_write("Num  ", false);
-            break;
-        case _ADJUST:
-            oled_write("Adjst", false);
-            break;
-        default:
-            oled_write("Dflt ", false);
-            break;
-    }
-
-    /* Show Mod  */
-    uint8_t modifiers = get_mods() | get_oneshot_mods();
-
-    oled_write("Mods:", false);
-    oled_write(" ", false);
-    oled_write_ln("SFT", (modifiers & MOD_MASK_SHIFT));
-    oled_write(" ", false);
-    oled_write_ln("CTL", (modifiers & MOD_MASK_CTRL));
-    oled_write(" ", false);
-    oled_write_ln("ALT", (modifiers & MOD_MASK_ALT));
-    oled_write(" ", false);
-    oled_write_ln("GUI", (modifiers & MOD_MASK_GUI));
-
-    /* Show logged Keys */
-    oled_write(keylog_str, false);
+    render_keylogger_status();
 }
 
 void oled_task_user(void) {
-    if (timer_elapsed(oled_timer) > 60000) {
+    if (timer_elapsed32(oled_timer) > 30000) {
         oled_off();
         return;
     }
+#    ifndef SPLIT_KEYBOARD
+    else {
+        oled_on();
+    }
+#    endif
+
+    update_log();
     if (is_master) {
         render_status_main();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
     } else {
         render_status_secondary();
     }
 }
-
-void matrix_scan_keymap(void) { update_log(); }
 #endif
 
 #ifdef CONSOLE_ENABLE
@@ -253,6 +237,18 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+#ifdef OLED_DRIVER_ENABLE
+        oled_timer = timer_read32();
+        add_keylog(keycode);
+#endif
+#ifndef SPLIT_KEYBOARD
+        if (keycode == RESET && !is_master) {
+            return false;
+        }
+#endif
+    }
+
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
