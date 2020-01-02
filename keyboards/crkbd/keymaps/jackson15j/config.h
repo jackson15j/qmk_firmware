@@ -1,6 +1,5 @@
 // See: `/users/jackson15j/config.h` for global options.
 #pragma once
-#include "quantum.h"
 
 /* Select hand configuration */
 // Use either USB port, but need to flash each side with a unique hex.
