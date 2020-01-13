@@ -103,7 +103,7 @@ enum userspace_custom_keycodes {
 // 3x12 Symbols layout.
 #define SYMBOL_L1 KC_EXCLM, KC_DBLQT,   KC_GBP,  KC_DOLR, KC_PRCNT
 #define SYMBOL_L2 KC_LCURLY,  KC_LBRC, KC_LPAREN, KC_MINUS, KC_GRAVE
-#define SYMBOL_L3 KC_ATT,  KC_PLUS,  KC_NUBS, KC_JPIPE,  KC_QUOT
+#define SYMBOL_L3 KC_ATT,  KC_PLUS, KC_JPIPE,  KC_NUBS,  KC_QUOT
 #define SYMBOL_R1 KC_HAT,   KC_AMP,  KC_STAR, KC_LPAREN, KC_RPAREN
 #define SYMBOL_R2 KC_JHASH, KC_UNDSCR, KC_RPAREN,  KC_RBRC, KC_RCURLY
 #define SYMBOL_R3 KC_TILDA,  KC_SLSH,   KC_EQL, KC_QUEST,  KC_SLSH
@@ -113,7 +113,7 @@ enum userspace_custom_keycodes {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
   //|   TAB,     {,     [,     (,     -,     `,                      #,     _,     ),     ],     },   ENT,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-  //|  LSFT,     @,     +,     \,     |,     ',                      ~,     /,     =,     ?,     /,  RSFT,
+  //|  LSFT,     @,     +,     |,     \,     ',                      ~,     /,     =,     ?,     /,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                               //| LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
