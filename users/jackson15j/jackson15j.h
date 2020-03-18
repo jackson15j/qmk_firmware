@@ -51,6 +51,8 @@ enum userspace_custom_keycodes {
 #define KC_QUEST LSFT(KC_SLSH)  // `?`
 #define KC_LCURLY LSFT(KC_LBRC)  // `{`
 #define KC_RCURLY LSFT(KC_RBRC)  // `}`
+#define KC_LANGLE LSFT(KC_COMMA)  // `<`
+#define KC_RANGLE LSFT(KC_DOT) // `>`
 #define KC_EXCLM LSFT(KC_1)  // `!`
 #define KC_DBLQT LSFT(KC_2)  // `"`
 #define KC_GBP LSFT(KC_3)  // `£`
@@ -113,7 +115,7 @@ enum userspace_custom_keycodes {
   //,-----------------------------------------.                ,-----------------------------------------.
   //|   ESC,     !,     ",     £,     $,     %,                      ^,     &,     *,     (,     ),   DEL,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-  //|   TAB,     {,     [,     (,     -,     `,                      #,     _,     ),     ],     },   ENT,
+  //|     <,     {,     [,     (,     -,     `,                      #,     _,     ),     ],     },     >,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
   //|  LSFT,     @,     +,     |,     \,     ',                      ~,     /,     =,     ?,     /,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
@@ -121,7 +123,7 @@ enum userspace_custom_keycodes {
                               //`--------------------'  `--------------------'
   // ),
 #define SYMBOL_1_12 KC_ESC, SYMBOL_L1, SYMBOL_R1, KC_DEL
-#define SYMBOL_2_12 KC_TAB, SYMBOL_L2, SYMBOL_R2, KC_ENT
+#define SYMBOL_2_12 KC_LANGLE, SYMBOL_L2, SYMBOL_R2, KC_RANGLE
 #define SYMBOL_3_12 KC_LSFT, SYMBOL_L3, SYMBOL_R3, KC_RSFT
 
 // 3x12 Movement layout.
