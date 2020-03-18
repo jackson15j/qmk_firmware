@@ -5,7 +5,8 @@ enum userspace_layers {
     _SYMBOL,
     _MOVMNT,
     _NUMBS,
-    _ADJUST
+    _ADJUST,
+    _SYMBOL2
 };
 
 enum userspace_custom_keycodes {
@@ -14,6 +15,7 @@ enum userspace_custom_keycodes {
   NUMBS,
   MOVMNT,
   ADJUST,
+  SYMBOL2,
   RGBRST,
   MBTN1,
   SCRL
