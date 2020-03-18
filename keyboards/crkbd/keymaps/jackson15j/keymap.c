@@ -33,6 +33,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     CORNE_THUMBS
   ),
 
+  [_SYMBOL2] = LAYOUT_crkbd_wrapper(
+    SYMBOL_1_12,
+    SYMBOL_2_12,
+    SYMBOL_3_12,
+    CORNE_THUMBS
+  ),
+
   [_MOVMNT] = LAYOUT_crkbd_wrapper(
     MOVMNT_1_12,
     MOVMNT_2_12,
@@ -128,6 +135,7 @@ void render_default_layer_state(void) {
 void render_layer_state(void) {
     oled_write_P(PSTR("LAYER"), false);
     oled_write_P(PSTR("Symbl"), layer_state_is(_SYMBOL));
+    oled_write_P(PSTR("NmSym"), layer_state_is(_SYMBOL2));
     oled_write_P(PSTR("Move "), layer_state_is(_MOVMNT));
     oled_write_P(PSTR("Nums "), layer_state_is(_NUMBS));
     oled_write_P(PSTR("Adj  "), layer_state_is(_ADJUST));
@@ -233,7 +241,11 @@ uint16_t get_tapping_term(uint16_t keycode) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _SYMBOL, _MOVMNT, _ADJUST);
+  state = update_tri_layer_state(state, _SYMBOL, _MOVMNT, _ADJUST);
+  // Go back to symbols layer whilst still holding numbers layer, to avoid
+  // constantly alternately tapping my thumbs.
+  state = update_tri_layer_state(state, _SYMBOL, _NUMBS, _SYMBOL2);
+  return state;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
