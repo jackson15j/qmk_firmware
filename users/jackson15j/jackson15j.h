@@ -27,6 +27,7 @@ enum userspace_custom_keycodes {
 #define KC_NUMBS NUMBS
 #define KC_MOVMNT MOVMNT
 #define KC_SPC_SYM LT(_SYMBOL, KC_SPC)  // Tap=space, hold=SYMBOL layer.
+#define KC_SPC_NUM LT(_NUMBS, KC_SPC)  // Tap=space, hold=NUMBS layer.
 #define KC_SPC_LSFT MT(MOD_LSFT, KC_SPC)  // Tap=space, hold=Left Shift.
 #define KC_RST   RESET
 #define KC_LRST  RGBRST
@@ -73,7 +74,7 @@ enum userspace_custom_keycodes {
 // 1x6 Thumb cluster.
 #define CORNE_THUMB_L KC_LCTRL, KC_LALT, KC_SPC_SYM
 // #define CORNE_THUMB_R KC_SPC_LSFT, KC_MOVMNT, KC_NUMBS
-#define CORNE_THUMB_R KC_SPC, KC_MOVMNT, KC_NUMBS
+#define CORNE_THUMB_R KC_SPC_NUM, KC_MOVMNT, KC_NUMBS
 #define CORNE_THUMBS CORNE_THUMB_L, CORNE_THUMB_R
 
 // 1x12 Thumb Cluster.
@@ -96,7 +97,7 @@ enum userspace_custom_keycodes {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
   //|  LSFT,     Z,  WINX,     C,     V,     B,                      N,     M,     ,,     .,     /,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                              //| LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
+                              //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // ),
 #define QWERTY_1_12 KC_ESC, QWERTY_L1, QWERTY_R1, KC_BSPC
@@ -119,7 +120,7 @@ enum userspace_custom_keycodes {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
   //|  LSFT,     @,     +,     |,     \,     ',                      ~,     /,     =,     ?,     /,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                              //| LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
+                              //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // ),
 #define SYMBOL_1_12 KC_ESC, SYMBOL_L1, SYMBOL_R1, KC_DEL
@@ -141,7 +142,7 @@ enum userspace_custom_keycodes {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
   //|  LSFT,  LGUI,  LGUI, XXXXX, XXXXX,   RST,                   MUTE, VOLD,   VOLU,   INS,  PSCR,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                              //| LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
+                              //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // ),
 #define MOVMNT_1_12 KC_ESC, MOVMNT_L1, MOVMNT_R1, KC_BSPC
@@ -163,7 +164,7 @@ enum userspace_custom_keycodes {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
   //|  LSFT,    F1, WINF2,    F3,    F4,    F5,                     F6,    F7,    F8,     .,   F12,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                              //| LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
+                              //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // ),
 #define NUMBS_1_12 KC_ESC, NUMBS_L1, NUMBS_R1, KC_BSPC
@@ -185,7 +186,7 @@ enum userspace_custom_keycodes {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
   //|  LMOD,  LHUD,  LSAD,  LVAD, XXXXX,   RST,                    RST, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                              //| LCTRL,  LALT,SPC_SYM,SPC_LSFT,MOVMNT, NUMBS
+                              //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // )
 #define ADJUST_1_12 KC_RST, ADJUST_L1, ADJUST_R1, KC_XXXXX
