@@ -29,6 +29,8 @@ enum userspace_custom_keycodes {
 #define KC_SPC_SYM LT(_SYMBOL, KC_SPC)  // Tap=space, hold=SYMBOL layer.
 #define KC_SPC_NUM LT(_NUMBS, KC_SPC)  // Tap=space, hold=NUMBS layer.
 #define KC_SPC_LSFT MT(MOD_LSFT, KC_SPC)  // Tap=space, hold=Left Shift.
+#define KC_J_LCTRL MT(MOD_LCTL, KC_J)  // Tap=J, hold=Left Ctrl.
+#define KC_K_LALT MT(MOD_LALT, KC_K)  // Tap=K, hold=Left Alt.
 #define KC_RST   RESET
 #define KC_LRST  RGBRST
 #define KC_LTOG  RGB_TOG
@@ -86,7 +88,7 @@ enum userspace_custom_keycodes {
 #define QWERTY_L2 KC_A,    KC_S,    KC_D,    KC_F,    KC_G
 #define QWERTY_L3 KC_Z, KC_WINX,    KC_C,    KC_V,    KC_B
 #define QWERTY_R1 KC_Y,    KC_U,    KC_I,    KC_O,    KC_P
-#define QWERTY_R2 KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN
+#define QWERTY_R2 KC_H,    KC_J_LCTRL,    KC_K_LALT,    KC_L,    KC_SCLN
 #define QWERTY_R3 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLASH
 #define QWERTY_R3_PLANCK KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_UP
   // [_QWERTY] = LAYOUT_kc(
