@@ -35,6 +35,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     COLEMAK_DHM_L3, COLEMAK_DHM_R3
   ),
 
+  [_GAME] = LAYOUT_wrapper(
+    GAME_1_12,
+    GAME_2_12,
+    GAME_3_12,
+    CORNE_GAME_THUMBS
+  ),
+
   [_SYMBOL] = LAYOUT_wrapper(
     SYMBOL_1_12,
     SYMBOL_2_12,

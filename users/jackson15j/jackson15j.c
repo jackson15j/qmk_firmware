@@ -117,7 +117,11 @@ void render_default_layer_state(void) {
             break;
         case _COLEMAK_DHM:
             oled_write_P(PSTR(" CLMK"), false);
-            break;    }
+            break;
+        case _GAME:
+            oled_write_P(PSTR(" GAME"), false);
+            break;
+    }
 }
 
 void render_layer_state(void) {
@@ -253,6 +257,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case _COLEMAK_DHM:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_COLEMAK_DHM);
+      }
+      return false;
+    case _GAME:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_GAME);
       }
       return false;
     case _SYMBOL:

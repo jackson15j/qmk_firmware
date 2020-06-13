@@ -4,6 +4,7 @@
 enum userspace_layers {
     _QWERTY,
     _COLEMAK_DHM,
+    _GAME,
     _SYMBOL,
     _MOVMNT,
     _NUMBS,
@@ -96,20 +97,27 @@ enum userspace_layers {
 
 // 1x6 Thumb cluster.
 #define CORNE_THUMB_L KC_LCTRL, KC_LALT, KC_SPC_SYM
+#define CORNE_GAME_THUMB_L KC_LCTRL, KC_LALT, KC_SPC_NUM
 #define CORNE_THUMB_R KC_SPC_NUM, MO(_MOVMNT), MO(_NUMBS)
 #define CORNE_THUMBS CORNE_THUMB_L, CORNE_THUMB_R
-#define CORNE_THUMBS_TRNS KC______, KC______, KC______, KC______, KC______, KC______
+#define CORNE_GAME_THUMBS CORNE_GAME_THUMB_L, CORNE_THUMB_R
+#define CORNE_THUMBS_TRNS _______, _______, _______, _______, _______, _______
 
 // 1x12 Thumb Cluster.
 // TODO: Rotary Encoder - Testing out presses with a full-stop.
 #define PLANCK_THUMBS KC_DOT, KC_LCTRL, KC_LGUI, CORNE_THUMBS, KC_LEFT, KC_DOWN, KC_RIGHT
 
 // 3x12 Qwerty layout.
+// FIXME: why is `KC_A` broken on the Qwerty layer when there are
+// multiple `DF()` layers??. Using `KC_A_OS as a workaround. Not
+// an issue on the Colemak layer.
 #define QWERTY_L1 KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
-#define QWERTY_L2 KC_A,    KC_S,    KC_D,    KC_F,    KC_G
-#define QWERTY_L3 KC_Z, KC_WINX,    KC_C,    KC_V,    KC_B
+#define QWERTY_L2 LGUI_T(KC_A),    LSFT_T(KC_S),    LALT_T(KC_D),    LCTL_T(KC_F),    ALGR_T(KC_G)
+#define QWERTY_L2_NO_MODS KC_A,    KC_S,    KC_D,    KC_F,    KC_G
+#define QWERTY_L3 KC_Z, KC_X,    KC_C,    KC_V,    KC_B
 #define QWERTY_R1 KC_Y,    KC_U,    KC_I,    KC_O,    KC_P
-#define QWERTY_R2 KC_H,    KC_J_LCTRL,    KC_K_LALT,    KC_L,    KC_SCLN
+#define QWERTY_R2 ALGR_T(KC_H),    RCTL_T(KC_J),    LALT_T(KC_K),    RSFT_T(KC_L),    RGUI_T(KC_SCLN)
+#define QWERTY_R2_NO_MODS KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN
 #define QWERTY_R3 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLASH
 #define QWERTY_R3_PLANCK KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_UP
   // [_QWERTY] = LAYOUT_kc(
@@ -143,6 +151,32 @@ enum userspace_layers {
                               //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // ),
+
+// 3x12 game layout.
+// FIXME: why is `KC_A` broken on the game layer when there are
+// multiple `DF()` layers??. Using `KC_A_OS as a workaround. Not
+// an issue on the Colemak layer.
+#define GAME_L1 QWERTY_L1
+#define GAME_L2 QWERTY_L2_NO_MODS
+#define GAME_L3 QWERTY_L3
+#define GAME_R1 QWERTY_R1
+#define GAME_R2 QWERTY_R2_NO_MODS
+#define GAME_R3 QWERTY_R3
+  // [_GAME] = LAYOUT_kc(
+  //,-----------------------------------------.                ,-----------------------------------------.
+  //|   ESC,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+  //|   TAB,     A,     S,     D,     F,     G,                      H,     J,     K,     L,     ;,   ENT,
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+  //|  LSFT,     Z,     X,     C,     V,     B,                      N,     M,     ,,     .,     /,  RSFT,
+  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
+                              //| LCTRL,  LALT,SPC_NUM, SPC_NUM,MOVMNT, NUMBS
+                              //`--------------------'  `--------------------'
+  // ),
+#define GAME_1_12 _______, GAME_L1, GAME_R1, _______
+#define GAME_2_12 _______, GAME_L2, GAME_R2, _______
+#define GAME_3_12 _______, GAME_L3, GAME_R3, _______
+
 
 // 3x12 Symbols layout.
 #define SYMBOL_L1 KC_EXCLM, KC_DBLQT,   KC_GBP,  KC_DOLR, KC_PRCNT
