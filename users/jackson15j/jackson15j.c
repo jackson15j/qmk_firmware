@@ -234,11 +234,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         oled_timer = timer_read32();
         add_keylog(keycode);
 #endif
-#ifndef SPLIT_KEYBOARD
-        if (keycode == RESET && !is_master) {
-            return false;
-        }
-#endif
+// TODO: This protection code is breaking the planck build due to
+// the undefined `is_master`.
+//
+// #ifndef SPLIT_KEYBOARD
+//         if (keycode == RESET && !is_master) {
+//             return false;
+//         }
+// #endif
     }
 
   switch (keycode) {

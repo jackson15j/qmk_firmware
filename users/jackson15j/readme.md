@@ -6,6 +6,12 @@ Personal user space for my keyboards:
 * [crkbd].
 * [planck].
 
+Build all boards with:
+
+```bash
+qmk compile -kb crkbd -km jackson15j && qmk compile -kb planck/rev6 -km jackson15j
+```
+
 Aim
 ---
 

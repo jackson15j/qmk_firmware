@@ -72,7 +72,7 @@ enum userspace_layers {
 #define KC_MBTN1  MBTN1
 #define KC_SCRL   SCRL
 
-// Colmak defintions.
+// Colemak defintions.
 #define KC_A_OS LGUI_T(KC_A)  // Tap=A, Hold=Left OS.
 #define KC_R_SHFT MT(MOD_LSFT, KC_R)  // Tap=R, Hold=Left Shift.
 #define KC_S_LALT MT(MOD_LALT, KC_S)  // Tap=S, Hold=Left Alt.
@@ -91,6 +91,7 @@ enum userspace_layers {
 
 // clang-format off
 #define LAYOUT_wrapper(...)                  LAYOUT(__VA_ARGS__)
+#define LAYOUT_ortho_4x12_wrapper(...)       LAYOUT_ortho_4x12(__VA_ARGS__)
 
 
 // 1x6 Thumb cluster.
