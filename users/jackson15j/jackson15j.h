@@ -1,7 +1,9 @@
 #pragma once
+#include "quantum.h"
 
 enum userspace_layers {
     _QWERTY,
+    _COLEMAK_DHM,
     _SYMBOL,
     _MOVMNT,
     _NUMBS,
@@ -9,8 +11,9 @@ enum userspace_layers {
     _SYMBOL2
 };
 
-enum userspace_custom_keycodes {
+/* enum userspace_custom_keycodes {
   QWERTY,
+  COLEMAK_DHM,
   SYMBOL,
   NUMBS,
   MOVMNT,
@@ -19,20 +22,16 @@ enum userspace_custom_keycodes {
   RGBRST,
   MBTN1,
   SCRL
-};
+}; */
 
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
-#define KC_SYMBOL SYMBOL
-#define KC_NUMBS NUMBS
-#define KC_MOVMNT MOVMNT
 #define KC_SPC_SYM LT(_SYMBOL, KC_SPC)  // Tap=space, hold=SYMBOL layer.
 #define KC_SPC_NUM LT(_NUMBS, KC_SPC)  // Tap=space, hold=NUMBS layer.
 #define KC_SPC_LSFT MT(MOD_LSFT, KC_SPC)  // Tap=space, hold=Left Shift.
 #define KC_J_LCTRL MT(MOD_LCTL, KC_J)  // Tap=J, hold=Left Ctrl.
 #define KC_K_LALT MT(MOD_LALT, KC_K)  // Tap=K, hold=Left Alt.
 #define KC_RST   RESET
-#define KC_LRST  RGBRST
 #define KC_LTOG  RGB_TOG
 #define KC_LHUI  RGB_HUI
 #define KC_LHUD  RGB_HUD
@@ -73,11 +72,61 @@ enum userspace_custom_keycodes {
 #define KC_MBTN1  MBTN1
 #define KC_SCRL   SCRL
 
+// Colmak defintions.
+#define KC_A_OS LGUI_T(KC_A)  // Tap=A, Hold=Left OS.
+#define KC_R_SHFT MT(MOD_LSFT, KC_R)  // Tap=R, Hold=Left Shift.
+#define KC_S_LALT MT(MOD_LALT, KC_S)  // Tap=S, Hold=Left Alt.
+#define KC_T_LCTRL MT(MOD_LCTL, KC_T)  // Tap=T, Hold=Left Ctrl.
+#define KC_G_ALTGR MT(MOD_RALT, KC_G)  // Tap=G, Hold=AltGr.
+#define KC_M_ALTGR MT(MOD_RALT, KC_M)  // Tap=M, Hold=AltGr.
+#define KC_N_LCTRL MT(MOD_RCTL, KC_N)  // Tap=N, Hold=Right Ctrl.
+#define KC_E_LALT MT(MOD_LALT, KC_E)  // Tap=E, Hold=Left Alt.
+#define KC_I_SHFT MT(MOD_RSFT, KC_I)  // Tap=R, Hold=Right Shift.
+#define KC_O_OS RGUI_T(KC_O)  // Tap=O, Hold=Right OS.
+// Colemak combos.
+enum combos {
+    QW_ESC,
+    FP_QUOTE,
+    LU_HYPHEN,
+    YSC_BKSPC,
+    ZX_DEL,
+    CD_TAB,
+    HCOM_UNDSCR,
+    FSSLSH_ENTER
+};
+const uint16_t PROGMEM qw_combo[] = {KC_Q, KC_W, COMBO_END};
+const uint16_t PROGMEM fp_combo[] = {KC_F, KC_P, COMBO_END};
+const uint16_t PROGMEM lu_combo[] = {KC_L, KC_U, COMBO_END};
+const uint16_t PROGMEM ysc_combo[] = {KC_Y, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM zx_combo[] = {KC_Z, KC_X, COMBO_END};
+const uint16_t PROGMEM cd_combo[] = {KC_C, KC_D, COMBO_END};
+const uint16_t PROGMEM hcom_combo[] = {KC_H, KC_COMM, COMBO_END};
+const uint16_t PROGMEM fsslsh_combo[] = {KC_DOT, KC_SLASH, COMBO_END};
+combo_t key_combos[COMBO_COUNT] = {
+    [QW_ESC] = COMBO(qw_combo, KC_ESC),
+    [FP_QUOTE] = COMBO(fp_combo, KC_DBLQT),
+    [LU_HYPHEN] = COMBO(lu_combo, KC_QUOT),
+    [YSC_BKSPC] = COMBO(ysc_combo, KC_BSPC),
+    [ZX_DEL] = COMBO(zx_combo, KC_DEL),
+    [CD_TAB] = COMBO(cd_combo, KC_TAB),
+    [HCOM_UNDSCR] = COMBO(hcom_combo, KC_UNDSCR),
+    [FSSLSH_ENTER] = COMBO(fsslsh_combo, KC_ENT)
+};
+
+#if (!defined(LAYOUT) && defined(KEYMAP))
+    #define LAYOUT KEYMAP
+#endif
+
+// clang-format off
+#define LAYOUT_wrapper(...)                  LAYOUT(__VA_ARGS__)
+
+
 // 1x6 Thumb cluster.
 #define CORNE_THUMB_L KC_LCTRL, KC_LALT, KC_SPC_SYM
 // #define CORNE_THUMB_R KC_SPC_LSFT, KC_MOVMNT, KC_NUMBS
-#define CORNE_THUMB_R KC_SPC_NUM, KC_MOVMNT, KC_NUMBS
+#define CORNE_THUMB_R KC_SPC_NUM, MO(_MOVMNT), MO(_NUMBS)
 #define CORNE_THUMBS CORNE_THUMB_L, CORNE_THUMB_R
+#define CORNE_THUMBS_TRNS KC______, KC______, KC______, KC______, KC______, KC______
 
 // 1x12 Thumb Cluster.
 // TODO: Rotary Encoder - Testing out presses with a full-stop.
@@ -107,6 +156,28 @@ enum userspace_custom_keycodes {
 #define QWERTY_3_12 KC_LSFT, QWERTY_L3, QWERTY_R3, KC_RSFT
 #define QWERTY_3_12_PLANCK KC_LSFT, QWERTY_L3, QWERTY_R3_PLANCK, KC_RSFT
 
+// 3x12 Colemak-DHm layout.
+#define COLEMAK_DHM_L1 KC_Q,    KC_W,    KC_F,    KC_P,    KC_B
+#define COLEMAK_DHM_L2 KC_A_OS,    KC_R_SHFT,    KC_S_LALT,    KC_T_LCTRL,    KC_G_ALTGR
+#define COLEMAK_DHM_L3 KC_Z, KC_X,    KC_C,    KC_D,    KC_V
+#define COLEMAK_DHM_R1 KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
+#define COLEMAK_DHM_R2 KC_M_ALTGR,    KC_N_LCTRL,    KC_E_LALT,    KC_I_SHFT,    KC_O_OS
+#define COLEMAK_DHM_R3 KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLASH
+  // [_COLEMAK_DHM] = LAYOUT_kc(
+  //,-----------------------------------------.                ,-----------------------------------------.
+  //|   ESC,     Q,     W,     F,     P,     B,                      J,     L,     U,     Y,     ;,  BSPC,
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+  //|   TAB,  A_OS, R_SFT, S_LAT, T_CTL, G_ALG,                  M_ALG, N_CTL, E_SFT, I_ALT,  O_OS,   ENT,
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+  //|  LSFT,     Z,     X,     C,     D,     V,                      K,     H,     ,,     .,     /,  RSFT,
+  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
+                              //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
+                              //`--------------------'  `--------------------'
+  // ),
+#define COLEMAK_DHM_1_12 KC_ESC, COLEMAK_DHM_L1, COLEMAK_DHM_R1, KC_BSPC
+#define COLEMAK_DHM_2_12 KC_TAB, COLEMAK_DHM_L2, COLEMAK_DHM_R2, KC_ENT
+#define COLEMAK_DHM_3_12 KC_LSFT, COLEMAK_DHM_L3, COLEMAK_DHM_R3, KC_RSFT
+
 // 3x12 Symbols layout.
 #define SYMBOL_L1 KC_EXCLM, KC_DBLQT,   KC_GBP,  KC_DOLR, KC_PRCNT
 #define SYMBOL_L2 KC_LCURLY,  KC_LBRC, KC_LPAREN, KC_MINUS, KC_GRAVE
@@ -125,14 +196,14 @@ enum userspace_custom_keycodes {
                               //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // ),
-#define SYMBOL_1_12 KC_ESC, SYMBOL_L1, SYMBOL_R1, KC_DEL
+#define SYMBOL_1_12 KC______, SYMBOL_L1, SYMBOL_R1, KC______
 #define SYMBOL_2_12 KC_LANGLE, SYMBOL_L2, SYMBOL_R2, KC_RANGLE
-#define SYMBOL_3_12 KC_LSFT, SYMBOL_L3, SYMBOL_R3, KC_RSFT
+#define SYMBOL_3_12 KC______, SYMBOL_L3, SYMBOL_R3, KC______
 
 // 3x12 Movement layout.
 #define MOVMNT_L1 KC_XXXXX,  KC_WH_U,  KC_MS_U,  KC_WH_D,  KC_XXXXX
 #define MOVMNT_L2 KC_BTN1,   KC_MS_L,  KC_MS_D,  KC_MS_R,  KC_BTN2
-#define MOVMNT_L3 KC_LGUI,   KC_LGUI,  KC_XXXXX, KC_XXXXX, KC_RST
+#define MOVMNT_L3 KC_LGUI,   KC_LGUI,  DF(_COLEMAK_DHM), DF(_QWERTY), KC_XXXXX
 #define MOVMNT_R1 KC_XXXXX,  KC_PGUP,  KC_UP,    KC_PGDN,  KC_DEL
 #define MOVMNT_R2 KC_HOME,   KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_END
 #define MOVMNT_R3 KC_MUTE,   KC_VOLD,  KC_VOLU,  KC_INS,   KC_PSCR
@@ -142,14 +213,14 @@ enum userspace_custom_keycodes {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
   //|   TAB,  BTN1,  MS_L,  MS_D,  MS_R,  BTN2,                   HOME,  LEFT,  DOWN,  RGHT,   END,   ENT,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-  //|  LSFT,  LGUI,  LGUI, XXXXX, XXXXX,   RST,                   MUTE, VOLD,   VOLU,   INS,  PSCR,  RSFT,
+  //|  LSFT,  LGUI,  LGUI,COLEMK, QWERTY, GAME,                   MUTE, VOLD,   VOLU,   INS,  PSCR,  RSFT,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                               //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // ),
-#define MOVMNT_1_12 KC_ESC, MOVMNT_L1, MOVMNT_R1, KC_BSPC
+#define MOVMNT_1_12 KC______, MOVMNT_L1, MOVMNT_R1, KC______
 #define MOVMNT_2_12 KC_TAB, MOVMNT_L2, MOVMNT_R2, KC_ENT
-#define MOVMNT_3_12 KC_LSFT, MOVMNT_L3, MOVMNT_R3, KC_RSFT
+#define MOVMNT_3_12 KC______, MOVMNT_L3, MOVMNT_R3, KC______
 
 // 3x12 Numbers layout.
 #define NUMBS_L1 KC_EXCLM, KC_DBLQT, KC_GBP,   KC_DOLR,   KC_PRCNT
@@ -169,12 +240,12 @@ enum userspace_custom_keycodes {
                               //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // ),
-#define NUMBS_1_12 KC_ESC, NUMBS_L1, NUMBS_R1, KC_BSPC
-#define NUMBS_2_12 KC_TAB, NUMBS_L2, NUMBS_R2, KC_ENT
-#define NUMBS_3_12 KC_LSFT, NUMBS_L3, NUMBS_R3, KC_RSFT
+#define NUMBS_1_12 KC______, NUMBS_L1, NUMBS_R1, KC______
+#define NUMBS_2_12 KC______, NUMBS_L2, NUMBS_R2, KC______
+#define NUMBS_3_12 KC______, NUMBS_L3, NUMBS_R3, KC______
 
 // 3x12 Adjust layout.
-#define ADJUST_L1 KC_LRST,  KC_XXXXX, KC_XXXXX, KC_XXXXX, KC_XXXXX
+#define ADJUST_L1 KC_XXXXX, KC_XXXXX, KC_XXXXX, KC_XXXXX, KC_XXXXX
 #define ADJUST_L2 KC_LHUI,  KC_LSAI,  KC_LVAI,  KC_XXXXX, KC_XXXXX
 #define ADJUST_L3 KC_LHUD,  KC_LSAD,  KC_LVAD,  KC_XXXXX, KC_RST
 #define ADJUST_R1 KC_XXXXX, KC_XXXXX, KC_XXXXX, KC_XXXXX, KC_XXXXX

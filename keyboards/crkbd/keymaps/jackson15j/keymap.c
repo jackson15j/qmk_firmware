@@ -10,55 +10,62 @@ extern keymap_config_t keymap_config;
 extern uint8_t is_master;
 
 #define LAYOUT_crkbd_base( \
-    K01, K02, K03, K04, K05, K06, K07, K08, K09, K0A, K0B, K0C, \
-    K11, K12, K13, K14, K15, K16, K17, K18, K19, K1A, K1B, K1C, \
-    K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A, K2B, K2C, \
-                   K31, K32, K33, K34, K35, K36 \
+    K01, K02, K03, K04, K05, K06, K07, K08, K09, K0A, \
+    K11, K12, K13, K14, K15, K16, K17, K18, K19, K1A, \
+    K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A \
+  ) \
+  LAYOUT_wrapper( \
+    KC_ESC, K01, K02, K03, K04, K05, K06, K07, K08, K09, K0A, KC_BSPC, \
+    KC_TAB, K11, K12, K13, K14, K15, K16, K17, K18, K19, K1A, KC_ENT, \
+    KC_LSFT, K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A, KC_RSFT, \
+                   CORNE_THUMBS \
   )
 
-#define LAYOUT_crkbd_wrapper(...) LAYOUT(__VA_ARGS__)
+#define LAYOUT_crkbd_base_wrapper(...) LAYOUT_crkbd_base(__VA_ARGS__)
 // See: `/users/jackson15j/jackson15j.h` for the layouts.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_QWERTY] = LAYOUT_crkbd_wrapper(
-    QWERTY_1_12,
-    QWERTY_2_12,
-    QWERTY_3_12,
-    CORNE_THUMBS
+  [_QWERTY] = LAYOUT_crkbd_base_wrapper(
+    QWERTY_L1, QWERTY_R1,
+    QWERTY_L2, QWERTY_R2,
+    QWERTY_L3, QWERTY_R3
   ),
 
-  [_SYMBOL] = LAYOUT_crkbd_wrapper(
+  [_COLEMAK_DHM] = LAYOUT_crkbd_base_wrapper(
+    COLEMAK_DHM_L1, COLEMAK_DHM_R1,
+    COLEMAK_DHM_L2, COLEMAK_DHM_R2,
+    COLEMAK_DHM_L3, COLEMAK_DHM_R3
+  ),
+
+  [_SYMBOL] = LAYOUT_wrapper(
     SYMBOL_1_12,
     SYMBOL_2_12,
     SYMBOL_3_12,
-    CORNE_THUMBS
+    CORNE_THUMBS_TRNS
   ),
 
-  [_SYMBOL2] = LAYOUT_crkbd_wrapper(
+  [_SYMBOL2] = LAYOUT_wrapper(
     SYMBOL_1_12,
     SYMBOL_2_12,
     SYMBOL_3_12,
-    CORNE_THUMBS
+    CORNE_THUMBS_TRNS
   ),
 
-  [_MOVMNT] = LAYOUT_crkbd_wrapper(
-    MOVMNT_1_12,
-    MOVMNT_2_12,
-    MOVMNT_3_12,
-    CORNE_THUMBS
+  [_MOVMNT] = LAYOUT_crkbd_base_wrapper(
+    MOVMNT_L1, MOVMNT_R1,
+    MOVMNT_L2, MOVMNT_R2,
+    MOVMNT_L3, MOVMNT_R3
   ),
 
-  [_NUMBS] = LAYOUT_crkbd_wrapper(
-    NUMBS_1_12,
-    NUMBS_2_12,
-    NUMBS_3_12,
-    CORNE_THUMBS
+  [_NUMBS] = LAYOUT_crkbd_base_wrapper(
+    NUMBS_L1, NUMBS_R1,
+    NUMBS_L2, NUMBS_R2,
+    NUMBS_L3, NUMBS_R3
   ),
 
-  [_ADJUST] = LAYOUT_crkbd_wrapper(
-    ADJUST_1_12,
-    ADJUST_2_12,
-    ADJUST_3_12,
-    CORNE_THUMBS
+  [_ADJUST] = LAYOUT_crkbd_base_wrapper(
+    ADJUST_L1, ADJUST_R1,
+    ADJUST_L2, ADJUST_R2,
+    ADJUST_L3, ADJUST_R3
   ),
 };
 
@@ -129,7 +136,9 @@ void render_default_layer_state(void) {
         case _QWERTY:
             oled_write_P(PSTR(" QRTY"), false);
             break;
-    }
+        case _COLEMAK_DHM:
+            oled_write_P(PSTR(" CLMK"), false);
+            break;    }
 }
 
 void render_layer_state(void) {
@@ -262,26 +271,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
   switch (keycode) {
-    case QWERTY:
+    case _QWERTY:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_QWERTY);
       }
       return false;
-    case SYMBOL:
+    case _COLEMAK_DHM:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_COLEMAK_DHM);
+      }
+      return false;
+    case _SYMBOL:
       if (record->event.pressed) {
         layer_on(_SYMBOL);
       } else {
         layer_off(_SYMBOL);
       }
       return false;
-    case MOVMNT:
+    case _MOVMNT:
       if (record->event.pressed) {
         layer_on(_MOVMNT);
       } else {
         layer_off(_MOVMNT);
       }
       return false;
-    case NUMBS:
+    case _NUMBS:
       if (record->event.pressed) {
         layer_on(_NUMBS);
       } else {
