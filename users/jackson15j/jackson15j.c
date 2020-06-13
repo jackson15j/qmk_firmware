@@ -252,16 +252,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case _QWERTY:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_QWERTY);
+        combo_disable();
       }
       return false;
     case _COLEMAK_DHM:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_COLEMAK_DHM);
+        combo_enable();
       }
       return false;
     case _GAME:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_GAME);
+        combo_disable();
       }
       return false;
     case _SYMBOL:
