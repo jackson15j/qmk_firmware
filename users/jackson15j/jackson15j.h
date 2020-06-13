@@ -59,9 +59,7 @@ enum userspace_layers {
 #define PLANCK_THUMBS KC_DOT, KC_LCTRL, KC_LGUI, CORNE_THUMBS, KC_LEFT, KC_DOWN, KC_RIGHT
 
 // 3x12 Qwerty layout.
-// FIXME: why is `KC_A` broken on the Qwerty layer when there are
-// multiple `DF()` layers??. Using `KC_A_OS as a workaround. Not
-// an issue on the Colemak layer.
+// TODO: tweak home row tapping times, to avoid accidental mods at speed!
 #define QWERTY_L1 KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
 #define QWERTY_L2 LGUI_T(KC_A),    LSFT_T(KC_S),    LALT_T(KC_D),    LCTL_T(KC_F),    ALGR_T(KC_G)
 #define QWERTY_L2_NO_MODS KC_A,    KC_S,    KC_D,    KC_F,    KC_G
@@ -104,9 +102,6 @@ enum userspace_layers {
   // ),
 
 // 3x12 game layout.
-// FIXME: why is `KC_A` broken on the game layer when there are
-// multiple `DF()` layers??. Using `KC_A_OS as a workaround. Not
-// an issue on the Colemak layer.
 #define GAME_L1 QWERTY_L1
 #define GAME_L2 QWERTY_L2_NO_MODS
 #define GAME_L3 QWERTY_L3
