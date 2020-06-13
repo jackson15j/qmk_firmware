@@ -12,39 +12,8 @@ enum userspace_layers {
     _SYMBOL2
 };
 
-/* enum userspace_custom_keycodes {
-  QWERTY,
-  COLEMAK_DHM,
-  SYMBOL,
-  NUMBS,
-  MOVMNT,
-  ADJUST,
-  SYMBOL2,
-  RGBRST,
-  MBTN1,
-  SCRL
-}; */
-
-#define KC______ KC_TRNS
-#define KC_XXXXX KC_NO
 #define KC_SPC_SYM LT(_SYMBOL, KC_SPC)  // Tap=space, hold=SYMBOL layer.
 #define KC_SPC_NUM LT(_NUMBS, KC_SPC)  // Tap=space, hold=NUMBS layer.
-#define KC_SPC_LSFT MT(MOD_LSFT, KC_SPC)  // Tap=space, hold=Left Shift.
-#define KC_J_LCTRL MT(MOD_LCTL, KC_J)  // Tap=J, hold=Left Ctrl.
-#define KC_K_LALT MT(MOD_LALT, KC_K)  // Tap=K, hold=Left Alt.
-#define KC_RST   RESET
-#define KC_LTOG  RGB_TOG
-#define KC_LHUI  RGB_HUI
-#define KC_LHUD  RGB_HUD
-#define KC_LSAI  RGB_SAI
-#define KC_LSAD  RGB_SAD
-#define KC_LVAI  RGB_VAI
-#define KC_LVAD  RGB_VAD
-#define KC_LMOD  RGB_MOD
-#define KC_CTLA CTL_T(KC_A)
-#define KC_CTLSC CTL_T(KC_SCLN)
-#define KC_SFTZ LSFT(KC_Z)
-#define KC_SFTSL LSFT(KC_SLSH)
 #define KC_UNDSCR LSFT(KC_MINS)  // `_`
 #define KC_PLUS LSFT(KC_EQL)  // `+`
 #define KC_JPIPE LSFT(KC_NUBS)  // `|`
@@ -66,24 +35,6 @@ enum userspace_layers {
 #define KC_STAR LSFT(KC_8)  // `*`
 #define KC_LPAREN LSFT(KC_9)  // `(`
 #define KC_RPAREN LSFT(KC_0)  // `)`
-#define KC_WINX LWIN_T(KC_X)
-#define KC_WINF2 LWIN_T(KC_F2)
-#define KC_WINDO RWIN_T(KC_DOT)
-
-#define KC_MBTN1  MBTN1
-#define KC_SCRL   SCRL
-
-// Colemak defintions.
-#define KC_A_OS LGUI_T(KC_A)  // Tap=A, Hold=Left OS.
-#define KC_R_SHFT MT(MOD_LSFT, KC_R)  // Tap=R, Hold=Left Shift.
-#define KC_S_LALT MT(MOD_LALT, KC_S)  // Tap=S, Hold=Left Alt.
-#define KC_T_LCTRL MT(MOD_LCTL, KC_T)  // Tap=T, Hold=Left Ctrl.
-#define KC_G_ALTGR MT(MOD_RALT, KC_G)  // Tap=G, Hold=AltGr.
-#define KC_M_ALTGR MT(MOD_RALT, KC_M)  // Tap=M, Hold=AltGr.
-#define KC_N_LCTRL MT(MOD_RCTL, KC_N)  // Tap=N, Hold=Right Ctrl.
-#define KC_E_LALT MT(MOD_LALT, KC_E)  // Tap=E, Hold=Left Alt.
-#define KC_I_SHFT MT(MOD_RSFT, KC_I)  // Tap=R, Hold=Right Shift.
-#define KC_O_OS RGUI_T(KC_O)  // Tap=O, Hold=Right OS.
 
 
 #if (!defined(LAYOUT) && defined(KEYMAP))
@@ -135,10 +86,10 @@ enum userspace_layers {
 
 // 3x12 Colemak-DHm layout.
 #define COLEMAK_DHM_L1 KC_Q,    KC_W,    KC_F,    KC_P,    KC_B
-#define COLEMAK_DHM_L2 KC_A_OS,    KC_R_SHFT,    KC_S_LALT,    KC_T_LCTRL,    KC_G_ALTGR
+#define COLEMAK_DHM_L2 LGUI_T(KC_A),    RSFT_T(KC_R),    LALT_T(KC_S),    LCTL_T(KC_T),    ALGR_T(KC_G)
 #define COLEMAK_DHM_L3 KC_Z, KC_X,    KC_C,    KC_D,    KC_V
 #define COLEMAK_DHM_R1 KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
-#define COLEMAK_DHM_R2 KC_M_ALTGR,    KC_N_LCTRL,    KC_E_LALT,    KC_I_SHFT,    KC_O_OS
+#define COLEMAK_DHM_R2 ALGR_T(KC_M),    RCTL_T(KC_N),    LALT_T(KC_E),    RSFT_T(KC_I),    RGUI_T(KC_O)
 #define COLEMAK_DHM_R3 KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLASH
   // [_COLEMAK_DHM] = LAYOUT_kc(
   //,-----------------------------------------.                ,-----------------------------------------.
@@ -196,15 +147,15 @@ enum userspace_layers {
                               //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // ),
-#define SYMBOL_1_12 KC______, SYMBOL_L1, SYMBOL_R1, KC______
+#define SYMBOL_1_12 _______, SYMBOL_L1, SYMBOL_R1, KC_DEL
 #define SYMBOL_2_12 KC_LANGLE, SYMBOL_L2, SYMBOL_R2, KC_RANGLE
-#define SYMBOL_3_12 KC______, SYMBOL_L3, SYMBOL_R3, KC______
+#define SYMBOL_3_12 _______, SYMBOL_L3, SYMBOL_R3, _______
 
 // 3x12 Movement layout.
-#define MOVMNT_L1 KC_XXXXX,  KC_WH_U,  KC_MS_U,  KC_WH_D,  KC_XXXXX
+#define MOVMNT_L1 XXXXXXX,  KC_WH_U,  KC_MS_U,  KC_WH_D,  XXXXXXX
 #define MOVMNT_L2 KC_BTN1,   KC_MS_L,  KC_MS_D,  KC_MS_R,  KC_BTN2
-#define MOVMNT_L3 KC_LGUI,   KC_LGUI,  DF(_COLEMAK_DHM), DF(_QWERTY), KC_XXXXX
-#define MOVMNT_R1 KC_XXXXX,  KC_PGUP,  KC_UP,    KC_PGDN,  KC_DEL
+#define MOVMNT_L3 KC_LGUI,   KC_LGUI,  DF(_COLEMAK_DHM), DF(_QWERTY), DF(_GAME)
+#define MOVMNT_R1 XXXXXXX,  KC_PGUP,  KC_UP,    KC_PGDN,  KC_DEL
 #define MOVMNT_R2 KC_HOME,   KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_END
 #define MOVMNT_R3 KC_MUTE,   KC_VOLD,  KC_VOLU,  KC_INS,   KC_PSCR
   // [_MOVMNT] = LAYOUT_kc(
@@ -222,7 +173,7 @@ enum userspace_layers {
 // 3x12 Numbers layout.
 #define NUMBS_L1 KC_EXCLM, KC_DBLQT, KC_GBP,   KC_DOLR,   KC_PRCNT
 #define NUMBS_L2 KC_1,     KC_2,     KC_3,     KC_4,      KC_5
-#define NUMBS_L3 KC_F1,    KC_WINF2, KC_F3,    KC_F4,     KC_F5
+#define NUMBS_L3 KC_F1,    KC_F2,    KC_F3,    KC_F4,     KC_F5
 #define NUMBS_R1 KC_HAT,   KC_AMP,   KC_STAR,  KC_LPAREN, KC_RPAREN
 #define NUMBS_R2 KC_6,     KC_7,     KC_8,     KC_9,      KC_0
 #define NUMBS_R3 KC_F6,    KC_F7,    KC_F8,    KC_DOT,    KC_F12
@@ -239,12 +190,12 @@ enum userspace_layers {
   // ),
 
 // 3x12 Adjust layout.
-#define ADJUST_L1 KC_XXXXX, KC_XXXXX, KC_XXXXX, KC_XXXXX, KC_XXXXX
-#define ADJUST_L2 KC_LHUI,  KC_LSAI,  KC_LVAI,  KC_XXXXX, KC_XXXXX
-#define ADJUST_L3 KC_LHUD,  KC_LSAD,  KC_LVAD,  KC_XXXXX, KC_RST
-#define ADJUST_R1 KC_XXXXX, KC_XXXXX, KC_XXXXX, KC_XXXXX, KC_XXXXX
-#define ADJUST_R2 KC_XXXXX, KC_XXXXX, KC_XXXXX, KC_XXXXX, KC_XXXXX
-#define ADJUST_R3 KC_RST,   KC_XXXXX, KC_XXXXX, KC_XXXXX, KC_XXXXX
+#define ADJUST_L1 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define ADJUST_L2 RGB_HUI,  RGB_SAI,  RGB_VAI,  XXXXXXX, XXXXXXX
+#define ADJUST_L3 RGB_HUD,  RGB_SAD,  RGB_VAD,  XXXXXXX, RESET
+#define ADJUST_R1 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define ADJUST_R2 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define ADJUST_R3 RESET,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
   // [_ADJUST] = LAYOUT_kc(
   //,-----------------------------------------.                ,-----------------------------------------.
   //|   RST,  LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,

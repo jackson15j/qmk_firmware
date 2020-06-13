@@ -9,6 +9,9 @@ Build
 From the root of the QMK folder:
 
 ```bash
+# new style:
+qmk compile -kb crkbd -km jackson15j:<mcu>-split-<left/right>
+# old style:
 make crkbd:jackson15j:dfu-split-<left/right>  # Elite-C.
 make crkbd:jackson15j:avrdude-split-<left/right>  # Pro-Micro.
 ```
