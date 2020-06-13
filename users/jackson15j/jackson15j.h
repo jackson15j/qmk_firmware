@@ -96,7 +96,6 @@ enum userspace_layers {
 
 // 1x6 Thumb cluster.
 #define CORNE_THUMB_L KC_LCTRL, KC_LALT, KC_SPC_SYM
-// #define CORNE_THUMB_R KC_SPC_LSFT, KC_MOVMNT, KC_NUMBS
 #define CORNE_THUMB_R KC_SPC_NUM, MO(_MOVMNT), MO(_NUMBS)
 #define CORNE_THUMBS CORNE_THUMB_L, CORNE_THUMB_R
 #define CORNE_THUMBS_TRNS KC______, KC______, KC______, KC______, KC______, KC______
@@ -124,9 +123,6 @@ enum userspace_layers {
                               //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // ),
-#define QWERTY_1_12 KC_ESC, QWERTY_L1, QWERTY_R1, KC_BSPC
-#define QWERTY_2_12 KC_TAB, QWERTY_L2, QWERTY_R2, KC_ENT
-#define QWERTY_3_12 KC_LSFT, QWERTY_L3, QWERTY_R3, KC_RSFT
 #define QWERTY_3_12_PLANCK KC_LSFT, QWERTY_L3, QWERTY_R3_PLANCK, KC_RSFT
 
 // 3x12 Colemak-DHm layout.
@@ -147,9 +143,6 @@ enum userspace_layers {
                               //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // ),
-#define COLEMAK_DHM_1_12 KC_ESC, COLEMAK_DHM_L1, COLEMAK_DHM_R1, KC_BSPC
-#define COLEMAK_DHM_2_12 KC_TAB, COLEMAK_DHM_L2, COLEMAK_DHM_R2, KC_ENT
-#define COLEMAK_DHM_3_12 KC_LSFT, COLEMAK_DHM_L3, COLEMAK_DHM_R3, KC_RSFT
 
 // 3x12 Symbols layout.
 #define SYMBOL_L1 KC_EXCLM, KC_DBLQT,   KC_GBP,  KC_DOLR, KC_PRCNT
@@ -191,9 +184,6 @@ enum userspace_layers {
                               //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // ),
-#define MOVMNT_1_12 KC______, MOVMNT_L1, MOVMNT_R1, KC______
-#define MOVMNT_2_12 KC_TAB, MOVMNT_L2, MOVMNT_R2, KC_ENT
-#define MOVMNT_3_12 KC______, MOVMNT_L3, MOVMNT_R3, KC______
 
 // 3x12 Numbers layout.
 #define NUMBS_L1 KC_EXCLM, KC_DBLQT, KC_GBP,   KC_DOLR,   KC_PRCNT
@@ -213,9 +203,6 @@ enum userspace_layers {
                               //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // ),
-#define NUMBS_1_12 KC______, NUMBS_L1, NUMBS_R1, KC______
-#define NUMBS_2_12 KC______, NUMBS_L2, NUMBS_R2, KC______
-#define NUMBS_3_12 KC______, NUMBS_L3, NUMBS_R3, KC______
 
 // 3x12 Adjust layout.
 #define ADJUST_L1 KC_XXXXX, KC_XXXXX, KC_XXXXX, KC_XXXXX, KC_XXXXX
@@ -235,6 +222,3 @@ enum userspace_layers {
                               //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // )
-#define ADJUST_1_12 KC_RST, ADJUST_L1, ADJUST_R1, KC_XXXXX
-#define ADJUST_2_12 KC_LTOG, ADJUST_L2, ADJUST_R2, KC_XXXXX
-#define ADJUST_3_12 KC_LMOD, ADJUST_L3, ADJUST_R3, KC_XXXXX
