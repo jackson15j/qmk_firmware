@@ -29,3 +29,13 @@ combo_t key_combos[COMBO_COUNT] = {
     [HCOM_UNDSCR] = COMBO(hcom_combo, KC_UNDSCR),
     [FSSLSH_ENTER] = COMBO(fsslsh_combo, KC_ENT)
 };
+
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case KC_SPC_LSFT:
+      return 150;
+    default:
+      return TAPPING_TERM;
+  }
+}

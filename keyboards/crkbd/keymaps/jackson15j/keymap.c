@@ -239,16 +239,6 @@ void keyboard_post_init_user(void) {
 }
 #endif
 
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case KC_SPC_LSFT:
-      // Reduce tapping term of Space/Shift to avoid shifting when I'm typing fast.
-      return 150;
-    default:
-      return TAPPING_TERM;
-  }
-}
-
 layer_state_t layer_state_set_user(layer_state_t state) {
   state = update_tri_layer_state(state, _SYMBOL, _MOVMNT, _ADJUST);
   // Go back to symbols layer whilst still holding numbers layer, to avoid
