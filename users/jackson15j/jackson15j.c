@@ -4,6 +4,7 @@ extern uint8_t is_master;
 
 
 // Colemak combos.
+// TODO: set these combos on Qwerty layer equivalents as well !!
 enum combos {
     QW_ESC,
     FP_QUOTE,

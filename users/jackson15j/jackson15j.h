@@ -59,7 +59,6 @@ enum userspace_layers {
 #define PLANCK_THUMBS KC_DOT, KC_LCTRL, KC_LGUI, CORNE_THUMBS, KC_LEFT, KC_DOWN, KC_RIGHT
 
 // 3x12 Qwerty layout.
-// TODO: tweak home row tapping times, to avoid accidental mods at speed!
 #define QWERTY_L1 KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
 #define QWERTY_L2 LGUI_T(KC_A),    LSFT_T(KC_S),    LALT_T(KC_D),    LCTL_T(KC_F),    ALGR_T(KC_G)
 #define QWERTY_L2_NO_MODS KC_A,    KC_S,    KC_D,    KC_F,    KC_G
@@ -69,6 +68,7 @@ enum userspace_layers {
 #define QWERTY_R2_NO_MODS KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN
 #define QWERTY_R3 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLASH
 #define QWERTY_R3_PLANCK KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_UP
+// TODO: Update/Delete these layout comments !!
   // [_QWERTY] = LAYOUT_kc(
   //,-----------------------------------------.                ,-----------------------------------------.
   //|   ESC,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,
@@ -83,6 +83,8 @@ enum userspace_layers {
 #define QWERTY_3_12_PLANCK KC_LSFT, QWERTY_L3, QWERTY_R3_PLANCK, KC_RSFT
 
 // 3x12 Colemak-DHm layout.
+// FIXME: Still can't hit: ŵ and ŷ with `AltGr` yet. need to fix that up.
+// See: https://en.wikipedia.org/wiki/AltGr_key#Scotland_and_Wales
 #define COLEMAK_DHM_L1 KC_Q,    KC_W,    KC_F,    KC_P,    KC_B
 #define COLEMAK_DHM_L2 LGUI_T(KC_A),    RSFT_T(KC_R),    LALT_T(KC_S),    LCTL_T(KC_T),    ALGR_T(KC_G)
 #define COLEMAK_DHM_L3 KC_Z, KC_X,    KC_C,    KC_D,    KC_V
@@ -147,6 +149,10 @@ enum userspace_layers {
 #define SYMBOL_3_12 _______, SYMBOL_L3, SYMBOL_R3, _______
 
 // 3x12 Movement layout.
+// TODO: Having home row mods on left-hand feels like a bigger win than
+// mouse-keys that I rarely use! Need to also remove from `rules.mk`.
+// Maybe numpad/symbols/F-keys or something on left instead to make a better
+// use of this side ??
 #define MOVMNT_L1 XXXXXXX,  KC_WH_U,  KC_MS_U,  KC_WH_D,  XXXXXXX
 #define MOVMNT_L2 KC_BTN1,   KC_MS_L,  KC_MS_D,  KC_MS_R,  KC_BTN2
 #define MOVMNT_L3 KC_LGUI,   KC_LGUI,  DF(_COLEMAK_DHM), DF(_QWERTY), DF(_GAME)
