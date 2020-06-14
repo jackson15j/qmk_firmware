@@ -123,6 +123,7 @@ void render_default_layer_state(void) {
             oled_write_P(PSTR(" GAME"), false);
             break;
     }
+    oled_write_P(PSTR("     "), false);  // blank linke.
 }
 
 void render_layer_state(void) {
@@ -132,6 +133,7 @@ void render_layer_state(void) {
     oled_write_P(PSTR("Move "), layer_state_is(_MOVMNT));
     oled_write_P(PSTR("Nums "), layer_state_is(_NUMBS));
     oled_write_P(PSTR("Adj  "), layer_state_is(_ADJUST));
+    oled_write_P(PSTR("     "), false);  // blank linke.
 }
 
 void render_keylock_status(uint8_t led_usb_state) {
@@ -140,6 +142,7 @@ void render_keylock_status(uint8_t led_usb_state) {
     oled_write_P(PSTR("N"), led_usb_state & (1 << USB_LED_NUM_LOCK));
     oled_write_P(PSTR("C"), led_usb_state & (1 << USB_LED_CAPS_LOCK));
     oled_write_ln_P(PSTR("S"), led_usb_state & (1 << USB_LED_SCROLL_LOCK));
+    oled_write_P(PSTR("     "), false);  // blank linke.
 }
 
 void render_mod_status(uint8_t modifiers) {
@@ -149,6 +152,7 @@ void render_mod_status(uint8_t modifiers) {
     oled_write_P(PSTR("C"), (modifiers & MOD_MASK_CTRL));
     oled_write_P(PSTR("A"), (modifiers & MOD_MASK_ALT));
     oled_write_P(PSTR("G"), (modifiers & MOD_MASK_GUI));
+    oled_write_P(PSTR("     "), false);  // blank linke.
 }
 
 void render_bootmagic_status(void) {
@@ -165,6 +169,7 @@ void render_bootmagic_status(void) {
     oled_write_P(logo[0][1], !keymap_config.swap_lctl_lgui);
     oled_write_P(logo[1][1], keymap_config.swap_lctl_lgui);
     oled_write_P(PSTR(" NKRO"), keymap_config.nkro);
+    oled_write_P(PSTR("     "), false);  // blank linke.
 }
 
 // void render_user_status(void) {
@@ -172,6 +177,7 @@ void render_bootmagic_status(void) {
 //     oled_write_P(PSTR(" Anim"), userspace_config.rgb_matrix_idle_anim);
 //     oled_write_P(PSTR(" Layr"), userspace_config.rgb_layer_change);
 //     oled_write_P(PSTR(" Nuke"), userspace_config.nuke_switch);
+//     oled_write_P(PSTR("     "), false);  // blank linke.
 // }
 
 void render_status_main(void) {
@@ -180,7 +186,6 @@ void render_status_main(void) {
     render_keylock_status(host_keyboard_leds());
     render_bootmagic_status();
     // render_user_status();
-
     render_keylogger_status();
 }
 
@@ -189,7 +194,6 @@ void render_status_secondary(void) {
     render_default_layer_state();
     render_layer_state();
     render_mod_status(get_mods() | get_oneshot_mods());
-
     render_keylogger_status();
 }
 
