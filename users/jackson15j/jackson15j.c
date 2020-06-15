@@ -3,6 +3,7 @@
 extern uint8_t is_master;
 
 
+#ifdef COMBO_ENABLE
 // Colemak combos.
 // TODO: set these combos on Qwerty layer equivalents as well !!
 enum combos {
@@ -33,21 +34,7 @@ combo_t key_combos[COMBO_COUNT] = {
     [HCOM_UNDSCR] = COMBO(hcom_combo, KC_UNDSCR),
     [FSSLSH_ENTER] = COMBO(fsslsh_combo, KC_ENT)
 };
-
-
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case LSFT_T(KC_SPC):
-      return 150;
-    default:
-      return TAPPING_TERM;
-  }
-}
-
-
-
-
-
+#endif
 
 
 #ifdef OLED_DRIVER_ENABLE
@@ -227,12 +214,23 @@ void keyboard_post_init_user(void) {
 }
 #endif
 
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+#ifdef COMBO_ENABLE
+    layer_state_cmp(state, _GAME) == true ? combo_disable() : combo_enable();
+#endif
+    return state;
+}
+
 layer_state_t layer_state_set_user(layer_state_t state) {
-  state = update_tri_layer_state(state, _SYMBOL, _MOVMNT, _ADJUST);
-  // Go back to symbols layer whilst still holding numbers layer, to avoid
-  // constantly alternately tapping my thumbs.
-  state = update_tri_layer_state(state, _SYMBOL, _NUMBS, _SYMBOL2);
-  return state;
+    state = update_tri_layer_state(state, _SYMBOL, _MOVMNT, _ADJUST);
+    // Go back to symbols layer whilst still holding numbers layer, to avoid
+    // constantly alternately tapping my thumbs.
+    state = update_tri_layer_state(state, _SYMBOL, _NUMBS, _SYMBOL2);
+#ifdef COMBO_ENABLE
+    // I use Numbers layer from default and gaming, so disabling combos universally.
+    layer_state_cmp(state, _NUMBS) == true ? combo_disable() : combo_enable();
+#endif
+    return state;
 }
 
 
