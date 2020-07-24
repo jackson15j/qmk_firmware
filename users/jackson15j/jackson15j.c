@@ -208,6 +208,7 @@ void oled_task_user(void) {
     }
 }
 #else
+extern uint8_t is_master;
 oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_270; }
 
 void add_keylog(uint16_t keycode) {
@@ -338,9 +339,13 @@ void oled_task_user(void) {
 #    endif
 
     update_log();
-    if (is_keyboard_master()) {
+    if (is_master) {
+        // FIXME: Need to refactor upstream crkbd to support `is_keyboard_master()`
+        // provided by the common `SPLIT_KEYBOARD = yes` in `rules.mk`.
+        oled_write_P(PSTR("Mastr"), false);
         render_status_main();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
     } else {
+        oled_write_P(PSTR("Slave"), false);
         render_status_secondary();
     }
 }
