@@ -13,7 +13,7 @@ Build all boards with:
 ```bash
 qmk compile -kb crkbd -km jackson15j && \
 qmk compile -kb handwired/ferris -km jackson15j && \
-qmk compile -kb kyria -km jackon15j && \
+qmk compile -kb kyria -km jackson15j && \
 qmk compile -kb planck/rev6 -km jackson15j
 ```
 
