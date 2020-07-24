@@ -3,39 +3,78 @@
 extern uint8_t is_master;
 
 
+// #ifdef COMBO_ENABLE
+// // Colemak combos.
+// // TODO: set these combos on Qwerty layer equivalents as well !!
+// // Keep an eye on these for overlapping combos:
+// // * https://www.reddit.com/r/olkb/comments/gpbnqm/curious_about_combos_but_dont_want_to_give_up/
+// // * https://github.com/sevanteri/qmk_firmware/commits/early_combo
+// enum combos {
+//     QW_ESC,
+//     FP_QUOTE,
+//     LU_HYPHEN,
+//     YSC_BKSPC,
+//     ZX_DEL,
+//     CD_TAB,
+//     HCOM_UNDSCR,
+//     FSSLSH_ENTER
+// };
+// const uint16_t PROGMEM qw_combo[] = {KC_Q, KC_W, COMBO_END};
+// const uint16_t PROGMEM fp_combo[] = {KC_F, KC_P, COMBO_END};
+// const uint16_t PROGMEM lu_combo[] = {KC_L, KC_U, COMBO_END};
+// const uint16_t PROGMEM ysc_combo[] = {KC_Y, KC_SCLN, COMBO_END};
+// const uint16_t PROGMEM zx_combo[] = {KC_Z, KC_X, COMBO_END};
+// const uint16_t PROGMEM cd_combo[] = {KC_C, KC_D, COMBO_END};
+// const uint16_t PROGMEM hcom_combo[] = {KC_H, KC_COMM, COMBO_END};
+// const uint16_t PROGMEM fsslsh_combo[] = {KC_DOT, KC_SLASH, COMBO_END};
+// combo_t key_combos[COMBO_COUNT] = {
+//     [QW_ESC] = COMBO(qw_combo, KC_ESC),
+//     [FP_QUOTE] = COMBO(fp_combo, KC_DBLQT),
+//     [LU_HYPHEN] = COMBO(lu_combo, KC_QUOT),
+//     [YSC_BKSPC] = COMBO(ysc_combo, KC_BSPC),
+//     [ZX_DEL] = COMBO(zx_combo, KC_DEL),
+//     [CD_TAB] = COMBO(cd_combo, KC_TAB),
+//     [HCOM_UNDSCR] = COMBO(hcom_combo, KC_UNDSCR),
+//     [FSSLSH_ENTER] = COMBO(fsslsh_combo, KC_ENT)
+// };
+// #endif
+
 #ifdef COMBO_ENABLE
-// Colemak combos.
-// TODO: set these combos on Qwerty layer equivalents as well !!
+// Qwerty combos.
+// TODO: Can the `LAYOUT_crkbd_base` (3x10) be pulled in here and then the combos placed on the
+// `K##` keys ??
+// Keep an eye on these for overlapping combos:
+// * https://www.reddit.com/r/olkb/comments/gpbnqm/curious_about_combos_but_dont_want_to_give_up/
+// * https://github.com/sevanteri/qmk_firmware/commits/early_combo
 enum combos {
     QW_ESC,
-    FP_QUOTE,
-    LU_HYPHEN,
-    YSC_BKSPC,
+    ER_QUOTE,
+    UI_HYPHEN,
+    OP_BKSPC,
     ZX_DEL,
-    CD_TAB,
-    HCOM_UNDSCR,
+    CV_TAB,
+    MCOM_UNDSCR,
     FSSLSH_ENTER
 };
 const uint16_t PROGMEM qw_combo[] = {KC_Q, KC_W, COMBO_END};
-const uint16_t PROGMEM fp_combo[] = {KC_F, KC_P, COMBO_END};
-const uint16_t PROGMEM lu_combo[] = {KC_L, KC_U, COMBO_END};
-const uint16_t PROGMEM ysc_combo[] = {KC_Y, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM er_combo[] = {KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM op_combo[] = {KC_O, KC_P, COMBO_END};
 const uint16_t PROGMEM zx_combo[] = {KC_Z, KC_X, COMBO_END};
-const uint16_t PROGMEM cd_combo[] = {KC_C, KC_D, COMBO_END};
-const uint16_t PROGMEM hcom_combo[] = {KC_H, KC_COMM, COMBO_END};
+const uint16_t PROGMEM cv_combo[] = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM mcom_combo[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM fsslsh_combo[] = {KC_DOT, KC_SLASH, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
     [QW_ESC] = COMBO(qw_combo, KC_ESC),
-    [FP_QUOTE] = COMBO(fp_combo, KC_DBLQT),
-    [LU_HYPHEN] = COMBO(lu_combo, KC_QUOT),
-    [YSC_BKSPC] = COMBO(ysc_combo, KC_BSPC),
+    [ER_QUOTE] = COMBO(er_combo, KC_DBLQT),
+    [UI_HYPHEN] = COMBO(ui_combo, KC_QUOT),
+    [OP_BKSPC] = COMBO(op_combo, KC_BSPC),
     [ZX_DEL] = COMBO(zx_combo, KC_DEL),
-    [CD_TAB] = COMBO(cd_combo, KC_TAB),
-    [HCOM_UNDSCR] = COMBO(hcom_combo, KC_UNDSCR),
+    [CV_TAB] = COMBO(cv_combo, KC_TAB),
+    [MCOM_UNDSCR] = COMBO(mcom_combo, KC_UNDSCR),
     [FSSLSH_ENTER] = COMBO(fsslsh_combo, KC_ENT)
 };
 #endif
-
 
 #ifdef OLED_DRIVER_ENABLE
 
