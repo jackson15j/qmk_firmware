@@ -4,12 +4,13 @@ Overview
 Personal user space for my keyboards:
 
 * [crkbd].
+* [ferris].
 * [planck].
 
 Build all boards with:
 
 ```bash
-qmk compile -kb crkbd -km jackson15j && qmk compile -kb planck/rev6 -km jackson15j
+qmk compile -kb crkbd -km jackson15j && qmk compile -kb handwired/ferris -km jackson15j && qmk compile -kb planck/rev6 -km jackson15j
 ```
 
 Aim
@@ -30,6 +31,13 @@ Core ([Github: jackson15j/vortex_core]). Aim of my layout:
 
 Layout
 ------
+
+**TODO:** Update layout to match current with:
+
+* Combos.
+* Colemak/Gamming layers.
+* Home row mods.
+* Reduction for 3x10 + thumbs layout.
 
 Current code dump of my layout layers:
 
@@ -123,6 +131,7 @@ timeout). Think it was due to the inbuilt USB3/thunderbolt hub.
 [Github: jackson15j/vortex_core]: https://github.com/jackson15j/vortex_core
 
 [crkbd]: ../../keyboards/crkbd/keymaps/jackson15j/
+[ferris]: ../../keyboards/handwired/ferris/keymaps/jackson15j/
 [planck]: ../../keyboards/planck/keymaps/jackson15j/
 [/users/jarred/]: ../jarred/
 [/users/drashna/]: ../drashna/
