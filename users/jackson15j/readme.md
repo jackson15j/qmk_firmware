@@ -5,12 +5,16 @@ Personal user space for my keyboards:
 
 * [crkbd].
 * [ferris].
+* [kyria].
 * [planck].
 
 Build all boards with:
 
 ```bash
-qmk compile -kb crkbd -km jackson15j && qmk compile -kb handwired/ferris -km jackson15j && qmk compile -kb planck/rev6 -km jackson15j
+qmk compile -kb crkbd -km jackson15j && \
+qmk compile -kb handwired/ferris -km jackson15j && \
+qmk compile -kb kyria -km jackon15j && \
+qmk compile -kb planck/rev6 -km jackson15j
 ```
 
 Aim
@@ -132,6 +136,7 @@ timeout). Think it was due to the inbuilt USB3/thunderbolt hub.
 
 [crkbd]: ../../keyboards/crkbd/keymaps/jackson15j/
 [ferris]: ../../keyboards/handwired/ferris/keymaps/jackson15j/
+[kyria]: ../../keyboards/kyria/keymaps/jackson15j/
 [planck]: ../../keyboards/planck/keymaps/jackson15j/
 [/users/jarred/]: ../jarred/
 [/users/drashna/]: ../drashna/
