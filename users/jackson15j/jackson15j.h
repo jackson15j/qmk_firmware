@@ -47,9 +47,9 @@ enum userspace_layers {
 
 
 // 1x6 Thumb cluster.
-#define CORNE_THUMB_L KC_LCTRL, KC_LALT, KC_SPC_SYM
+#define CORNE_THUMB_L LCTL_T(KC_DEL), LSFT_T(KC_BSPC), KC_SPC_SYM
 #define CORNE_GAME_THUMB_L KC_LCTRL, KC_LALT, KC_SPC_NUM
-#define CORNE_THUMB_R KC_SPC_NUM, MO(_MOVMNT), MO(_NUMBS)
+#define CORNE_THUMB_R KC_SPC_NUM, LT(_MOVMNT, KC_ENT), MO(_NUMBS)
 #define CORNE_THUMBS CORNE_THUMB_L, CORNE_THUMB_R
 #define CORNE_GAME_THUMBS CORNE_GAME_THUMB_L, CORNE_THUMB_R
 #define CORNE_THUMBS_TRNS _______, _______, _______, _______, _______, _______
