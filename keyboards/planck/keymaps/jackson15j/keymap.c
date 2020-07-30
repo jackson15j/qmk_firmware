@@ -47,13 +47,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     COLEMAK_DHM_L3, COLEMAK_DHM_R3
   ),
 
-  [_SYMBOL] = LAYOUT_ortho_4x12_wrapper(
-    SYMBOL_1_12,
-    SYMBOL_2_12,
-    SYMBOL_3_12,
-    PLANCK_THUMBS
+ [_GAME] = LAYOUT_planck_grid_wrapper(
+    GAME_L1, GAME_R1,
+    GAME_L2, GAME_R2,
+    GAME_L3, GAME_R3_PLANCK
   ),
 
+  [_SYMBOL] = LAYOUT_planck_grid_wrapper(
+    SYMBOL_L1, SYMBOL_R1,
+    SYMBOL_L2, SYMBOL_R2,
+    SYMBOL_L3, SYMBOL_R3
   ),
 
   [_MOVMNT] = LAYOUT_planck_grid_wrapper(

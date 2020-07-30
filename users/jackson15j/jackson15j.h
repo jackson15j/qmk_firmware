@@ -34,6 +34,9 @@ enum userspace_layers {
 #define KC_STAR LSFT(KC_8)  // `*`
 #define KC_LPAREN LSFT(KC_9)  // `(`
 #define KC_RPAREN LSFT(KC_0)  // `)`
+#define KC_TRNS_1X4 _______, _______, _______, _______
+#define KC_TRNS_1X5 KC_TRNS_1X4, _______
+#define KC_TRNS_1X6 KC_TRNS_1X5, _______
 
 
 #if (!defined(LAYOUT) && defined(KEYMAP))
@@ -43,21 +46,30 @@ enum userspace_layers {
 // clang-format off
 #define LAYOUT_wrapper(...)                  LAYOUT(__VA_ARGS__)
 #define LAYOUT_ortho_4x12_wrapper(...)       LAYOUT_ortho_4x12(__VA_ARGS__)
+// #define LAYOUT_split_3x5_2_wrapper(...)  LAYOUT_split_3x5_2(__VA_ARGS__)
 
+
+// 1x4 Thumb cluster.
+#define FERRIS_THUMB_L LSFT_T(KC_BSPC), KC_SPC_SYM
+#define FERRIS_GAME_THUMB_L KC_LCTRL, KC_SPC_NUM  // TODO: `KC_ALT`.
+#define FERRIS_THUMB_R LT(_MOVMNT, KC_ENT), MO(_NUMBS)
+#define FERRIS_THUMBS FERRIS_THUMB_L, FERRIS_THUMB_R
+#define FERRIS_GAME_THUMBS FERRIS_GAME_THUMB_L, FERRIS_THUMB_R
+#define FERRIS_THUMBS_TRNS KC_TRNS_1X4
 
 // 1x6 Thumb cluster.
-#define CORNE_THUMB_L LCTL_T(KC_DEL), LSFT_T(KC_BSPC), KC_SPC_SYM
+#define CORNE_THUMB_L LCTL_T(KC_DEL), FERRIS_THUMB_L
 #define CORNE_GAME_THUMB_L KC_LCTRL, KC_LALT, KC_SPC_NUM
-#define CORNE_THUMB_R KC_SPC_NUM, LT(_MOVMNT, KC_ENT), MO(_NUMBS)
+#define CORNE_THUMB_R FERRIS_THUMB_R, MO(_NUMBS)
 #define CORNE_THUMBS CORNE_THUMB_L, CORNE_THUMB_R
 #define CORNE_GAME_THUMBS CORNE_GAME_THUMB_L, CORNE_THUMB_R
-#define CORNE_THUMBS_TRNS _______, _______, _______, _______, _______, _______
+#define CORNE_THUMBS_TRNS KC_TRNS_1X6
 
 // 1x12 Thumb Cluster.
 // TODO: Rotary Encoder - Testing out presses with a full-stop.
 #define PLANCK_THUMBS KC_DOT, KC_LCTRL, KC_LGUI, CORNE_THUMBS, KC_LEFT, KC_DOWN, KC_RIGHT
 
-// 3x12 Qwerty layout.
+// 3x10 Qwerty layout.
 #define QWERTY_L1 KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
 #define QWERTY_L2 LGUI_T(KC_A),    LSFT_T(KC_S),    LALT_T(KC_D),    LCTL_T(KC_F),    ALGR_T(KC_G)
 #define QWERTY_L2_NO_MODS KC_A,    KC_S,    KC_D,    KC_F,    KC_G
@@ -109,6 +121,7 @@ enum userspace_layers {
 #define GAME_R1 QWERTY_R1
 #define GAME_R2 QWERTY_R2_NO_MODS
 #define GAME_R3 QWERTY_R3
+#define GAME_R3_PLANCK QWERTY_R3_PLANCK
   // [_GAME] = LAYOUT_kc(
   //,-----------------------------------------.                ,-----------------------------------------.
   //|   ESC,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,

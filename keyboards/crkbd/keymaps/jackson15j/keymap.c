@@ -31,18 +31,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_GAME] = LAYOUT_wrapper(
-    GAME_1_12,
-    GAME_2_12,
-    GAME_3_12,
+    _______, GAME_L1, KC_TRNS_1X6,
+    _______, GAME_L2, KC_TRNS_1X6,
+    _______, GAME_L3, KC_TRNS_1X6,
     CORNE_GAME_THUMBS
   ),
 
-  [_SYMBOL] = LAYOUT_wrapper(
-    SYMBOL_1_12,
-    SYMBOL_2_12,
-    SYMBOL_3_12,
-    CORNE_THUMBS_TRNS
-  ),
+  [_SYMBOL] = LAYOUT_crkbd_base_wrapper(
+    SYMBOL_L1, SYMBOL_R1,
+    SYMBOL_L2, SYMBOL_R2,
+    SYMBOL_L3, SYMBOL_R3
   ),
 
   [_MOVMNT] = LAYOUT_crkbd_base_wrapper(
