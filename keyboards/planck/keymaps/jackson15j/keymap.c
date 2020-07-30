@@ -54,11 +54,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     PLANCK_THUMBS
   ),
 
-  [_SYMBOL2] = LAYOUT_ortho_4x12_wrapper(
-    SYMBOL_1_12,
-    SYMBOL_2_12,
-    SYMBOL_3_12,
-    PLANCK_THUMBS
   ),
 
   [_MOVMNT] = LAYOUT_planck_grid_wrapper(

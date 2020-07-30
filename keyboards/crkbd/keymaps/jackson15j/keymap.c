@@ -43,12 +43,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     SYMBOL_3_12,
     CORNE_THUMBS_TRNS
   ),
-
-  [_SYMBOL2] = LAYOUT_wrapper(
-    SYMBOL_1_12,
-    SYMBOL_2_12,
-    SYMBOL_3_12,
-    CORNE_THUMBS_TRNS
   ),
 
   [_MOVMNT] = LAYOUT_crkbd_base_wrapper(

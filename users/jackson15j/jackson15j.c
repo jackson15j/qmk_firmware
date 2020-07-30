@@ -259,7 +259,6 @@ void render_default_layer_state(void) {
 void render_layer_state(void) {
     oled_write_P(PSTR("LAYER"), false);
     oled_write_P(PSTR("Symbl"), layer_state_is(_SYMBOL));
-    oled_write_P(PSTR("NmSym"), layer_state_is(_SYMBOL2));
     oled_write_P(PSTR("Move "), layer_state_is(_MOVMNT));
     oled_write_P(PSTR("Nums "), layer_state_is(_NUMBS));
     oled_write_P(PSTR("Adj  "), layer_state_is(_ADJUST));
@@ -371,9 +370,6 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     state = update_tri_layer_state(state, _SYMBOL, _MOVMNT, _ADJUST);
-    // Go back to symbols layer whilst still holding numbers layer, to avoid
-    // constantly alternately tapping my thumbs.
-    state = update_tri_layer_state(state, _SYMBOL, _NUMBS, _SYMBOL2);
 #ifdef COMBO_ENABLE
     // I use Numbers layer from default and gaming, so disabling combos universally.
     layer_state_cmp(state, _NUMBS) == true ? combo_disable() : combo_enable();

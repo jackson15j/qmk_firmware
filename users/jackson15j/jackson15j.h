@@ -9,7 +9,6 @@ enum userspace_layers {
     _MOVMNT,
     _NUMBS,
     _ADJUST,
-    _SYMBOL2
 };
 
 #define KC_SPC_SYM LT(_SYMBOL, KC_SPC)  // Tap=space, hold=SYMBOL layer.
