@@ -17,6 +17,22 @@ qmk compile -kb kyria -km jackson15j && \
 qmk compile -kb planck/rev6 -km jackson15j
 ```
 
+Flash my boards with:
+
+* Crkbd:
+    * Work: `qmk compile -kb crkbd -km jackson15j:avrdude-split-<left/right>`
+    * Home: `qmk compile -kb crkbd -km jackson15j:dfu-split-<left/right>`
+    * Double tap & bridge: `GND` & `RST` pins.
+* Ferris:
+    * `qmk flash -kb handwired/ferris -km jackson15j`.
+    * Double click reset button when prompted.
+* Kyria:
+    * `qmk flash -kb kyria/rev1 -km jackson15j:avrdude-split-<left/right>`.
+    * Double click reset button when prompted.
+* Planck:
+    * Double click reset button (with a pen/screwdriver), before flashing.
+    * `qmk flash -kb planck/rev6 -km jackson15j:dfu-util`.
+
 Aim
 ---
 
