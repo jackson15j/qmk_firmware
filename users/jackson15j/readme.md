@@ -43,11 +43,17 @@ Core ([Github: jackson15j/vortex_core]). Aim of my layout:
   pinky.
 * Symmetric layout between hands (as much as possible).
 * Use emacs, so need `Ctrl`/`Alt` on the left-side.
+    * **UPDATE:** Moved over to home-row mods. Finding it much better to use
+      compared to thumbs for mods. Also heavy switches and thumbs being under
+      the palm where leading to some knuckle pain.
 * I'm a right-hand `Space` fan, but added to left-side as well for single half
   gaming.
+    * **UPDATE:** Like mods, I'm finding that I naturally alternate hitting
+      space with either hand now.
 * Keep shifted-number symbols in the same place (fallback stock-Qwerty muscle
   memory).
 * Use `EE_HANDS` (On split boards) so that either half can be plugged in.
+* Using combos for common keys on top/bottom rows.
 
 Layout
 ------
