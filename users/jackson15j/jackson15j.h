@@ -65,6 +65,9 @@ enum userspace_layers {
 #define CORNE_GAME_THUMBS CORNE_GAME_THUMB_L, CORNE_THUMB_R
 #define CORNE_THUMBS_TRNS KC_TRNS_1X6
 
+// 1x10 Thumb Cluster.
+#define KYRIA_THUMBS KC_MUTE, KC_LGUI, CORNE_THUMBS, KC_RGUI, KC_MUTE
+
 // 1x12 Thumb Cluster.
 // TODO: Rotary Encoder - Testing out presses with a full-stop.
 #define PLANCK_THUMBS KC_DOT, KC_LCTRL, KC_LGUI, CORNE_THUMBS, KC_LEFT, KC_DOWN, KC_RIGHT
