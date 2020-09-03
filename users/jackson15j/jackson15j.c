@@ -39,7 +39,25 @@
 //     * Fix up Planck encoder to use User space - post-Kyria move.
 
 
-
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LGUI_T(KC_A):
+        case RGUI_T(KC_SCLN):
+        case RGUI_T(KC_O):
+            // Bump up tapping term for HomeRow GUI mods, to avoid accidental slow pinky
+            // taps triggering the GUI key.
+            return 300;
+        case LSFT_T(KC_S):
+        case LSFT_T(KC_R):
+        case RSFT_T(KC_L):
+        case RSFT_T(KC_I):
+            // Speed up the tapping term for HomeRow Shift mods, since I keep lifting
+            // to early and getting: `s<key_to_uppercase>` or `l<key_to_uppercase>`.
+            return 150;
+        default:
+            return TAPPING_TERM;
+    }
+}
 
 // #ifdef COMBO_ENABLE
 // // Colemak combos.
