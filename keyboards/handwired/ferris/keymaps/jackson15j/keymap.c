@@ -72,9 +72,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_GAME] = LAYOUT_wrapper(
-    GAME_L1, KC_TRNS_1X5,
-    GAME_L2, KC_TRNS_1X5,
-    GAME_L3, KC_TRNS_1X5,
+    GAME_L1, GAME_R1,
+    GAME_L2, GAME_R2,
+    GAME_L3, GAME_R3,
     FERRIS_GAME_THUMBS
   ),
 

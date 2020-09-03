@@ -117,30 +117,6 @@ enum userspace_layers {
                               //`--------------------'  `--------------------'
   // ),
 
-// 3x12 game layout.
-#define GAME_L1 QWERTY_L1
-#define GAME_L2 QWERTY_L2_NO_MODS
-#define GAME_L3 QWERTY_L3
-#define GAME_R1 QWERTY_R1
-#define GAME_R2 QWERTY_R2_NO_MODS
-#define GAME_R3 QWERTY_R3
-#define GAME_R3_PLANCK QWERTY_R3_PLANCK
-  // [_GAME] = LAYOUT_kc(
-  //,-----------------------------------------.                ,-----------------------------------------.
-  //|   ESC,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-  //|   TAB,     A,     S,     D,     F,     G,                      H,     J,     K,     L,     ;,   ENT,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-  //|  LSFT,     Z,     X,     C,     V,     B,                      N,     M,     ,,     .,     /,  RSFT,
-  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                              //| LCTRL,  LALT,SPC_NUM, SPC_NUM,MOVMNT, NUMBS
-                              //`--------------------'  `--------------------'
-  // ),
-#define GAME_1_12 _______, GAME_L1, GAME_R1, _______
-#define GAME_2_12 _______, GAME_L2, GAME_R2, _______
-#define GAME_3_12 _______, GAME_L3, GAME_R3, _______
-
-
 // 3x12 Symbols layout.
 #define SYMBOL_L1 KC_EXCLM, KC_DBLQT,   KC_GBP,  KC_DOLR, KC_PRCNT
 #define SYMBOL_L2 KC_LCURLY,  KC_LBRC, KC_LPAREN, KC_MINUS, KC_GRAVE
@@ -204,6 +180,29 @@ enum userspace_layers {
                               //| LCTRL,  LALT,SPC_SYM, SPC_NUM,MOVMNT, NUMBS
                               //`--------------------'  `--------------------'
   // ),
+
+// 3x12 game layout.
+#define GAME_L1 QWERTY_L1
+#define GAME_L2 QWERTY_L2_NO_MODS
+#define GAME_L3 QWERTY_L3
+#define GAME_R1 MOVMNT_R1
+#define GAME_R2 MOVMNT_R2
+#define GAME_R3 MOVMNT_R3
+#define GAME_R3_PLANCK QWERTY_R3_PLANCK
+  // [_GAME] = LAYOUT_kc(
+  //,-----------------------------------------.                ,-----------------------------------------.
+  //|   ESC,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+  //|   TAB,     A,     S,     D,     F,     G,                      H,     J,     K,     L,     ;,   ENT,
+  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
+  //|  LSFT,     Z,     X,     C,     V,     B,                      N,     M,     ,,     .,     /,  RSFT,
+  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
+                              //| LCTRL,  LALT,SPC_NUM, SPC_NUM,MOVMNT, NUMBS
+                              //`--------------------'  `--------------------'
+  // ),
+#define GAME_1_12 _______, GAME_L1, GAME_R1, _______
+#define GAME_2_12 _______, GAME_L2, GAME_R2, _______
+#define GAME_3_12 _______, GAME_L3, GAME_R3, _______
 
 // 3x12 Adjust layout.
 #define ADJUST_L1 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
