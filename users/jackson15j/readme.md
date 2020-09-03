@@ -31,7 +31,7 @@ Flash my boards with:
     * Double click reset button when prompted.
 * Planck:
     * Double click reset button (with a pen/screwdriver), before flashing.
-    * `qmk flash -kb planck/rev6 -km jackson15j:dfu-util`.
+    * `qmk compile -kb planck/rev6 -km jackson15j:dfu-util`.
 
 Aim
 ---
